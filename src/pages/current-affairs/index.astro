@@ -1,0 +1,513 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import Card from '../../components/Card.astro';
+import { getCollection } from 'astro:content';
+
+// Get all current affairs
+const allCurrentAffairs = await getCollection('currentAffairs');
+
+// Sort by date (newest first)
+const sortedAffairs = allCurrentAffairs.sort((a, b) => 
+	new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+// Get unique categories
+const categories = [...new Set(allCurrentAffairs.map(item => item.data.category))];
+
+// Get URL params for filtering
+const urlParams = Astro.url.searchParams;
+const selectedCategory = urlParams.get('category');
+const selectedImportance = urlParams.get('importance');
+
+// Filter based on query params
+let filteredAffairs = sortedAffairs;
+if (selectedCategory) {
+	filteredAffairs = filteredAffairs.filter(item => item.data.category === selectedCategory);
+}
+if (selectedImportance) {
+	filteredAffairs = filteredAffairs.filter(item => item.data.importance === selectedImportance);
+}
+
+// Group by month for better organization
+const groupedByMonth = filteredAffairs.reduce((acc, item) => {
+	const date = new Date(item.data.date);
+	const monthYear = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+	if (!acc[monthYear]) {
+		acc[monthYear] = [];
+	}
+	acc[monthYear].push(item);
+	return acc;
+}, {} as Record<string, typeof filteredAffairs>);
+---
+
+<WikiLayout 
+	title="Current Affairs" 
+	description="Stay updated with daily current affairs for competitive exams. Comprehensive coverage of national and international events, important for UPSC, SSC, Banking, Railways, and State PSC examinations."
+	keywords={['current affairs', 'daily current affairs', 'exam current affairs', 'UPSC current affairs', 'SSC current affairs', 'banking current affairs']}
+>
+	<Header slot="header" />
+	<Sidebar slot="sidebar" category="current-affairs" />
+	
+	<article class="wiki-article">
+		<h1>📰 Current Affairs</h1>
+		<p class="subtitle">Stay updated with the latest events and news relevant for competitive examinations</p>
+		
+		<section class="intro-section">
+			<p>
+				Welcome to the <strong>Current Affairs</strong> section of Exam Prep Wiki. Here you'll find daily updates on important 
+				national and international events, formatted specifically for competitive exam preparation. Each article includes 
+				comprehensive coverage, exam-relevant facts, practice questions, and static GK connections.
+			</p>
+		</section>
+		
+		<!-- Filters -->
+		<section class="filters-section">
+			<h2>Filter Current Affairs</h2>
+			<div class="filter-buttons">
+				<div class="filter-group">
+					<strong>Category:</strong>
+					<a href="/current-affairs" class={!selectedCategory ? 'filter-btn active' : 'filter-btn'}>
+						All
+					</a>
+					{categories.map(category => (
+						<a 
+							href={`/current-affairs?category=${category}`} 
+							class={selectedCategory === category ? 'filter-btn active' : 'filter-btn'}
+						>
+							{category}
+						</a>
+					))}
+				</div>
+				
+				<div class="filter-group">
+					<strong>Importance:</strong>
+					<a 
+						href={selectedCategory ? `/current-affairs?category=${selectedCategory}` : '/current-affairs'} 
+						class={!selectedImportance ? 'filter-btn active' : 'filter-btn'}
+					>
+						All
+					</a>
+					<a 
+						href={`/current-affairs?${selectedCategory ? `category=${selectedCategory}&` : ''}importance=high`}
+						class={selectedImportance === 'high' ? 'filter-btn active importance-high' : 'filter-btn importance-high'}
+					>
+						🔴 High
+					</a>
+					<a 
+						href={`/current-affairs?${selectedCategory ? `category=${selectedCategory}&` : ''}importance=medium`}
+						class={selectedImportance === 'medium' ? 'filter-btn active importance-medium' : 'filter-btn importance-medium'}
+					>
+						🟡 Medium
+					</a>
+					<a 
+						href={`/current-affairs?${selectedCategory ? `category=${selectedCategory}&` : ''}importance=low`}
+						class={selectedImportance === 'low' ? 'filter-btn active importance-low' : 'filter-btn importance-low'}
+					>
+						🟢 Low
+					</a>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Statistics -->
+		<section class="stats-section">
+			<div class="stat-card">
+				<div class="stat-number">{allCurrentAffairs.length}</div>
+				<div class="stat-label">Total Articles</div>
+			</div>
+			<div class="stat-card">
+				<div class="stat-number">{filteredAffairs.length}</div>
+				<div class="stat-label">Showing</div>
+			</div>
+			<div class="stat-card">
+				<div class="stat-number">{categories.length}</div>
+				<div class="stat-label">Categories</div>
+			</div>
+		</section>
+		
+		<!-- Current Affairs List -->
+		{Object.entries(groupedByMonth).length > 0 ? (
+			Object.entries(groupedByMonth).map(([monthYear, items]) => (
+				<section class="month-section">
+					<h2 class="month-header">{monthYear}</h2>
+					<div class="affairs-grid">
+						{items.map((item) => (
+							<div class="affair-card">
+								<div class="affair-header">
+									<span class={`importance-indicator importance-${item.data.importance}`}>
+										{item.data.importance === 'high' ? '🔴' : item.data.importance === 'medium' ? '🟡' : '🟢'}
+									</span>
+									<span class="affair-date">
+										{new Date(item.data.date).toLocaleDateString('en-US', { 
+											month: 'short', 
+											day: 'numeric',
+											year: 'numeric'
+										})}
+									</span>
+									<span class="affair-category">{item.data.category}</span>
+								</div>
+								
+								<h3 class="affair-title">
+									<a href={`/current-affairs/${item.id}`}>{item.data.title}</a>
+								</h3>
+								
+								<p class="affair-summary">{item.data.summary}</p>
+								
+								{item.data.topics && item.data.topics.length > 0 && (
+									<div class="affair-topics">
+										{item.data.topics.slice(0, 3).map(topic => (
+											<span class="topic-badge">{topic}</span>
+										))}
+										{item.data.topics.length > 3 && (
+											<span class="topic-badge">+{item.data.topics.length - 3} more</span>
+										)}
+									</div>
+								)}
+								
+								{item.data.exams && item.data.exams.length > 0 && (
+									<div class="affair-exams">
+										<strong>Relevant for:</strong> {item.data.exams.join(', ')}
+									</div>
+								)}
+								
+								<a href={`/current-affairs/${item.id}`} class="read-more">
+									Read Full Article →
+								</a>
+							</div>
+						))}
+					</div>
+				</section>
+			))
+		) : (
+			<section class="no-results">
+				<p>No current affairs found for the selected filters.</p>
+				<a href="/current-affairs" class="action-btn">Clear Filters</a>
+			</section>
+		)}
+		
+		<!-- Quick Links -->
+		<section class="quick-links">
+			<h2>Quick Access</h2>
+			<div class="links-grid">
+				<a href="/study" class="link-card">
+					<span class="link-icon">📚</span>
+					<span class="link-text">Study Materials</span>
+				</a>
+				<a href="/practice" class="link-card">
+					<span class="link-icon">✏️</span>
+					<span class="link-text">Practice Questions</span>
+				</a>
+				<a href="/tests" class="link-card">
+					<span class="link-icon">📋</span>
+					<span class="link-text">Mock Tests</span>
+				</a>
+				<a href="/videos" class="link-card">
+					<span class="link-icon">🎥</span>
+					<span class="link-text">Video Lessons</span>
+				</a>
+			</div>
+		</section>
+	</article>
+	
+	<Footer slot="footer" />
+</WikiLayout>
+
+<style>
+	.subtitle {
+		font-size: var(--font-size-large);
+		color: var(--color-text-secondary);
+		margin-top: var(--space-sm);
+	}
+	
+	.intro-section {
+		padding: var(--space-lg);
+		background-color: var(--color-bg-secondary);
+		border-left: 4px solid var(--color-accent-blue);
+		margin-bottom: var(--space-xl);
+		border-radius: var(--radius-sm);
+	}
+	
+	/* Filters */
+	.filters-section {
+		margin-bottom: var(--space-xl);
+		padding: var(--space-lg);
+		background-color: var(--color-bg-secondary);
+		border-radius: var(--radius-md);
+	}
+	
+	.filter-buttons {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+		margin-top: var(--space-md);
+	}
+	
+	.filter-group {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-sm);
+	}
+	
+	.filter-group strong {
+		margin-right: var(--space-sm);
+	}
+	
+	.filter-btn {
+		padding: 0.5rem 1rem;
+		background-color: var(--color-bg-primary);
+		color: var(--color-text-primary);
+		text-decoration: none;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-sm);
+		font-size: var(--font-size-small);
+		transition: all 0.2s;
+	}
+	
+	.filter-btn:hover {
+		border-color: var(--color-accent-blue);
+		transform: translateY(-1px);
+	}
+	
+	.filter-btn.active {
+		background-color: var(--color-accent-blue);
+		color: white;
+		border-color: var(--color-accent-blue);
+	}
+	
+	.importance-high.active {
+		background-color: #DC2626;
+		border-color: #DC2626;
+	}
+	
+	.importance-medium.active {
+		background-color: #D97706;
+		border-color: #D97706;
+	}
+	
+	.importance-low.active {
+		background-color: #059669;
+		border-color: #059669;
+	}
+	
+	/* Statistics */
+	.stats-section {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+		gap: var(--space-md);
+		margin-bottom: var(--space-xl);
+	}
+	
+	.stat-card {
+		padding: var(--space-lg);
+		background-color: var(--color-bg-secondary);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		text-align: center;
+	}
+	
+	.stat-number {
+		font-size: 2rem;
+		font-weight: 700;
+		color: var(--color-accent-blue);
+	}
+	
+	.stat-label {
+		font-size: var(--font-size-small);
+		color: var(--color-text-secondary);
+		margin-top: var(--space-xs);
+	}
+	
+	/* Month Section */
+	.month-section {
+		margin-bottom: var(--space-2xl);
+	}
+	
+	.month-header {
+		padding-bottom: var(--space-sm);
+		border-bottom: 2px solid var(--color-border);
+		margin-bottom: var(--space-lg);
+		color: var(--color-accent-blue);
+	}
+	
+	/* Affairs Grid */
+	.affairs-grid {
+		display: grid;
+		gap: var(--space-lg);
+	}
+	
+	.affair-card {
+		padding: var(--space-lg);
+		background-color: var(--color-bg-primary);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		transition: all 0.2s;
+	}
+	
+	.affair-card:hover {
+		border-color: var(--color-accent-blue);
+		box-shadow: var(--shadow-md);
+		transform: translateY(-2px);
+	}
+	
+	.affair-header {
+		display: flex;
+		align-items: center;
+		gap: var(--space-sm);
+		margin-bottom: var(--space-sm);
+		font-size: var(--font-size-small);
+	}
+	
+	.importance-indicator {
+		font-size: 1rem;
+	}
+	
+	.affair-date {
+		color: var(--color-text-secondary);
+		font-weight: 500;
+	}
+	
+	.affair-category {
+		padding: 0.25rem 0.75rem;
+		background-color: var(--color-bg-secondary);
+		border-radius: var(--radius-sm);
+		font-weight: 500;
+		text-transform: capitalize;
+	}
+	
+	.affair-title {
+		margin: var(--space-sm) 0;
+		font-size: var(--font-size-large);
+	}
+	
+	.affair-title a {
+		color: var(--color-text-primary);
+		text-decoration: none;
+	}
+	
+	.affair-title a:hover {
+		color: var(--color-accent-blue);
+	}
+	
+	.affair-summary {
+		color: var(--color-text-secondary);
+		line-height: 1.6;
+		margin-bottom: var(--space-md);
+	}
+	
+	.affair-topics {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-xs);
+		margin-bottom: var(--space-sm);
+	}
+	
+	.topic-badge {
+		padding: 0.25rem 0.5rem;
+		background-color: #EFF6FF;
+		color: var(--color-accent-blue);
+		font-size: 0.75rem;
+		border-radius: var(--radius-sm);
+		font-weight: 500;
+	}
+	
+	.affair-exams {
+		font-size: var(--font-size-small);
+		color: var(--color-text-secondary);
+		margin-bottom: var(--space-sm);
+	}
+	
+	.read-more {
+		display: inline-block;
+		color: var(--color-accent-blue);
+		text-decoration: none;
+		font-weight: 600;
+		font-size: var(--font-size-small);
+		margin-top: var(--space-sm);
+	}
+	
+	.read-more:hover {
+		text-decoration: underline;
+	}
+	
+	/* No Results */
+	.no-results {
+		padding: var(--space-2xl);
+		text-align: center;
+		background-color: var(--color-bg-secondary);
+		border-radius: var(--radius-md);
+	}
+	
+	.action-btn {
+		display: inline-block;
+		margin-top: var(--space-md);
+		padding: var(--space-sm) var(--space-lg);
+		background-color: var(--color-accent-blue);
+		color: white;
+		text-decoration: none;
+		border-radius: var(--radius-sm);
+		transition: all 0.2s;
+	}
+	
+	.action-btn:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-sm);
+	}
+	
+	/* Quick Links */
+	.quick-links {
+		margin-top: var(--space-2xl);
+		padding-top: var(--space-xl);
+		border-top: 1px solid var(--color-border);
+	}
+	
+	.links-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+		gap: var(--space-md);
+		margin-top: var(--space-md);
+	}
+	
+	.link-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-sm);
+		padding: var(--space-lg);
+		background-color: var(--color-bg-secondary);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		text-decoration: none;
+		color: var(--color-text-primary);
+		transition: all 0.2s;
+	}
+	
+	.link-card:hover {
+		border-color: var(--color-accent-blue);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-sm);
+	}
+	
+	.link-icon {
+		font-size: 2rem;
+	}
+	
+	.link-text {
+		font-weight: 600;
+		text-align: center;
+	}
+	
+	@media (max-width: 768px) {
+		.filter-group {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		
+		.affair-header {
+			flex-wrap: wrap;
+		}
+	}
+</style>
