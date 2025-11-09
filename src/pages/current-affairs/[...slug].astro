@@ -66,10 +66,12 @@ const structuredData = {
 		]} />
 		
 		<div class="article-header">
-			<div class="importance-badge" data-importance={entry.data.importance}>
-				{entry.data.importance === 'high' ? '🔴' : entry.data.importance === 'medium' ? '🟡' : '🟢'}
-				{entry.data.importance.toUpperCase()} IMPORTANCE
-			</div>
+			{entry.data.importance && (
+				<div class="importance-badge" data-importance={entry.data.importance}>
+					{entry.data.importance === 'high' ? '🔴' : entry.data.importance === 'medium' ? '🟡' : '🟢'}
+					{entry.data.importance.toUpperCase()} IMPORTANCE
+				</div>
+			)}
 			
 			<h1>{entry.data.title}</h1>
 			
