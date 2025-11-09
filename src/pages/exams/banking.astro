@@ -1,0 +1,285 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Card from '../../components/Card.astro';
+import SocialShare from '../../components/SocialShare.astro';
+
+// Structured Data for Banking Page
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "Course",
+	"name": "Banking Examination Preparation",
+	"description": "Complete preparation guide for banking exams including IBPS PO, IBPS Clerk, SBI PO, SBI Clerk, RBI Grade B with study materials.",
+	"provider": {
+		"@type": "EducationalOrganization",
+		"name": "Exam Prep Wiki",
+		"url": Astro.site
+	},
+	"educationalLevel": "Graduate",
+	"audience": {
+		"@type": "Audience",
+		"audienceType": "Banking aspirants"
+	}
+};
+---
+
+<WikiLayout 
+	title="Banking Exams - IBPS, SBI, RBI" 
+	description="Complete banking exam preparation for IBPS PO, IBPS Clerk, SBI PO, SBI Clerk, RBI Grade B, NABARD. Study materials, banking awareness, mock tests, and preparation strategy."
+	category="Banking"
+	keywords={['banking exams', 'IBPS PO', 'IBPS Clerk', 'SBI PO', 'SBI Clerk', 'RBI Grade B', 'NABARD', 'banking awareness', 'IBPS preparation', 'bank PO preparation']}
+	structuredData={structuredData}
+>
+	<Header slot="header" />
+	<Sidebar slot="sidebar" category="banking" />
+	
+	<article class="wiki-article">
+		<Breadcrumb items={[
+			{ label: 'Exams', href: '/exams' },
+			{ label: 'Banking', href: '/exams/banking' }
+		]} />
+		
+		<h1>Banking Sector Examinations</h1>
+		
+		<div class="infobox">
+			<table>
+				<tr>
+					<th colspan="2" style="text-align: center;">Banking Exams</th>
+				</tr>
+				<tr>
+					<td><strong>Major Organizations</strong></td>
+					<td>IBPS, SBI, RBI, NABARD</td>
+				</tr>
+				<tr>
+					<td><strong>Posts</strong></td>
+					<td>PO, Clerk, SO, Manager</td>
+				</tr>
+				<tr>
+					<td><strong>Sectors</strong></td>
+					<td>Public & Private Banks</td>
+				</tr>
+			</table>
+		</div>
+		
+		<section>
+			<h2>Overview</h2>
+			<p>
+				Banking sector examinations are conducted to recruit candidates for various posts in Public Sector Banks, 
+				Regional Rural Banks (RRBs), and financial institutions. These exams are highly competitive and test 
+				candidates' knowledge in banking awareness, quantitative aptitude, reasoning, and English.
+			</p>
+		</section>
+		
+		<SocialShare 
+			title="Banking Sector Examinations" 
+			description="Complete guide to banking exams - IBPS PO, IBPS Clerk, SBI PO, SBI Clerk, RBI Grade B. Get study materials, exam patterns, syllabus, and preparation tips."
+		/>
+		
+		<section>
+			<h2>Major Banking Exams</h2>
+			
+			<h3>1. IBPS PO (Probationary Officer)</h3>
+			<p>
+				<strong>Eligibility:</strong> Bachelor's degree, Age 20-30 years<br>
+				<strong>Exam Pattern:</strong> Prelims → Mains → Interview
+			</p>
+			<table>
+				<thead>
+					<tr><th>Phase</th><th>Sections</th><th>Duration</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>Prelims</td><td>English, Reasoning, Quantitative Aptitude</td><td>60 min</td></tr>
+					<tr><td>Mains</td><td>Reasoning, English, Quant, GA, Computer, DA</td><td>3 hours</td></tr>
+					<tr><td>Interview</td><td>Personal Interview</td><td>-</td></tr>
+				</tbody>
+			</table>
+			
+			<h3>2. IBPS Clerk</h3>
+			<p>
+				<strong>Eligibility:</strong> Bachelor's degree, Age 20-28 years<br>
+				<strong>Exam Pattern:</strong> Prelims → Mains
+			</p>
+			
+			<h3>3. SBI PO & Clerk</h3>
+			<p>Conducted by State Bank of India for recruitment to its branches across India.</p>
+			
+			<h3>4. RBI Grade B</h3>
+			<p>
+				<strong>Eligibility:</strong> Bachelor's degree with 60%, Age 21-30 years<br>
+				One of the most prestigious banking exams in India.
+			</p>
+			
+			<h3>5. IBPS SO (Specialist Officer)</h3>
+			<p>For specialized positions like IT Officer, Law Officer, Agriculture Officer, etc.</p>
+			
+			<h3>6. NABARD Grade A & B</h3>
+			<p>National Bank for Agriculture and Rural Development recruitment.</p>
+		</section>
+		
+		<section>
+			<h2>Common Syllabus</h2>
+			
+			<h3>Banking Awareness</h3>
+			<ul>
+				<li>Banking Structure in India</li>
+				<li>RBI Functions and Monetary Policy</li>
+				<li>Banking Terms and Definitions</li>
+				<li>Recent Banking Developments</li>
+				<li>Financial Institutions</li>
+			</ul>
+			
+			<h3>Quantitative Aptitude</h3>
+			<ul>
+				<li>Data Interpretation</li>
+				<li>Number Series</li>
+				<li>Simplification & Approximation</li>
+				<li>Quadratic Equations</li>
+				<li>Data Sufficiency</li>
+			</ul>
+			
+			<h3>Reasoning Ability</h3>
+			<ul>
+				<li>Puzzles and Seating Arrangement</li>
+				<li>Syllogism</li>
+				<li>Blood Relations</li>
+				<li>Coding-Decoding</li>
+				<li>Input-Output</li>
+			</ul>
+			
+			<h3>English Language</h3>
+			<ul>
+				<li>Reading Comprehension</li>
+				<li>Cloze Test</li>
+				<li>Error Spotting</li>
+				<li>Para Jumbles</li>
+				<li>Vocabulary</li>
+			</ul>
+			
+			<h3>Computer Knowledge</h3>
+			<ul>
+				<li>Computer Basics</li>
+				<li>MS Office</li>
+				<li>Internet and Networking</li>
+				<li>Computer Security</li>
+			</ul>
+		</section>
+		
+		<section>
+			<h2>Study Materials</h2>
+			<div class="card-grid">
+				<Card
+					title="Banking System Structure"
+					description="Complete overview of Indian Banking System"
+					href="/study/banking/banking-system/indian-banking-structure"
+					category="Banking"
+					tags={['banking system', 'rbi', 'structure']}
+				/>
+				<Card
+					title="Banking Awareness"
+					description="Current banking developments and terminology"
+					href="/study/banking/awareness"
+					category="Banking"
+					tags={['banking awareness', 'current affairs']}
+				/>
+				<Card
+					title="Quantitative Aptitude"
+					description="Mathematics for banking exams"
+					href="/study/banking/quantitative"
+					category="Banking"
+					tags={['mathematics', 'data interpretation']}
+				/>
+			</div>
+			<div class="view-more">
+				<a href="/study?category=banking" class="btn-link">View all Banking study materials →</a>
+			</div>
+		</section>
+		
+		<section>
+			<h2>Preparation Tips</h2>
+			<ol>
+				<li><strong>Regular Practice:</strong> Solve previous year papers daily</li>
+				<li><strong>Speed & Accuracy:</strong> Focus on both speed and accuracy</li>
+				<li><strong>Current Affairs:</strong> Read banking and economic news daily</li>
+				<li><strong>Mock Tests:</strong> Take full-length mock tests regularly</li>
+				<li><strong>Sectional Practice:</strong> Work on weak areas systematically</li>
+			</ol>
+		</section>
+		
+		<section>
+			<h2>Resources</h2>
+			<ul>
+				<li><a href="/study?category=banking">Study Materials</a></li>
+				<li><a href="/practice?category=banking">Practice Questions</a></li>
+				<li><a href="/tests?category=banking">Mock Tests</a></li>
+				<li><a href="/current-affairs?sector=banking">Banking Current Affairs</a></li>
+			</ul>
+		</section>
+	</article>
+	
+	<Footer slot="footer" />
+</WikiLayout>
+
+<style>
+	.infobox {
+		float: right;
+		margin: 0 0 var(--space-lg) var(--space-lg);
+		width: 300px;
+		background-color: var(--color-bg-secondary);
+		border: 1px solid var(--color-border-light);
+		font-size: var(--font-size-small);
+	}
+	
+	.infobox table {
+		width: 100%;
+		margin: 0;
+		background-color: transparent;
+	}
+	
+	.infobox th {
+		background-color: var(--color-bg-tertiary);
+		padding: var(--space-sm);
+		font-weight: 600;
+	}
+	
+	.infobox td {
+		padding: var(--space-xs) var(--space-sm);
+		vertical-align: top;
+	}
+	
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: var(--space-lg);
+		margin: var(--space-lg) 0;
+	}
+	
+	.view-more {
+		text-align: center;
+		margin-top: var(--space-xl);
+	}
+	
+	.btn-link {
+		display: inline-block;
+		padding: var(--space-sm) var(--space-lg);
+		background-color: var(--color-accent-blue);
+		color: white;
+		text-decoration: none;
+		border-radius: var(--radius-sm);
+		font-weight: 600;
+	}
+	
+	.btn-link:hover {
+		opacity: 0.9;
+	}
+	
+	@media (max-width: 768px) {
+		.infobox {
+			float: none;
+			width: 100%;
+			margin: var(--space-lg) 0;
+		}
+	}
+</style>

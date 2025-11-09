@@ -1,0 +1,86 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import SocialShare from '../../components/SocialShare.astro';
+
+// Structured Data for Railway Page
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "Course",
+	"name": "Railway Recruitment Examination Preparation",
+	"description": "Complete guide for railway recruitment exams RRB NTPC, ALP, Group D, JE with study materials and mock tests.",
+	"provider": {
+		"@type": "EducationalOrganization",
+		"name": "Exam Prep Wiki",
+		"url": Astro.site
+	},
+	"educationalLevel": ["High School", "Graduate"],
+	"audience": {
+		"@type": "Audience",
+		"audienceType": "Railway job aspirants"
+	}
+};
+---
+
+<WikiLayout 
+	title="Railway Exams - RRB NTPC, ALP, Group D" 
+	description="Complete railway recruitment exam preparation for RRB NTPC, RRB ALP, RRB Group D, RRB JE. Study materials, syllabus, exam pattern, and preparation tips."
+	category="Railways"
+	keywords={['railway exams', 'RRB NTPC', 'RRB ALP', 'RRB Group D', 'RRB JE', 'railway recruitment', 'Indian Railways', 'RRB preparation', 'railway job']}
+	structuredData={structuredData}
+>
+	<Header slot="header" />
+	<Sidebar slot="sidebar" category="railways" />
+	
+	<article class="wiki-article">
+		<Breadcrumb items={[
+			{ label: 'Exams', href: '/exams' },
+			{ label: 'Railways', href: '/exams/railways' }
+		]} />
+		
+		<h1>Railway Recruitment Board Exams</h1>
+		
+		<section>
+			<h2>Overview</h2>
+			<p>
+				Railway Recruitment Boards (RRBs) conduct examinations for recruitment to various posts in Indian Railways. 
+				The major exams include RRB NTPC, RRB ALP, RRB Group D, and RRB JE.
+			</p>
+		</section>
+		
+		<SocialShare 
+			title="Railway Recruitment Board Exams" 
+			description="Complete guide to RRB exams - RRB NTPC, RRB ALP, RRB Group D, RRB JE. Get study materials, exam patterns, syllabus, and preparation strategies."
+		/>
+		
+		<section>
+			<h2>Major Railway Exams</h2>
+			
+			<h3>1. RRB NTPC (Non-Technical Popular Categories)</h3>
+			<p><strong>Posts:</strong> Junior Clerk, Accounts Clerk, Traffic Assistant, etc.</p>
+			
+			<h3>2. RRB ALP (Assistant Loco Pilot)</h3>
+			<p><strong>Posts:</strong> Assistant Loco Pilot and Technicians</p>
+			
+			<h3>3. RRB Group D</h3>
+			<p><strong>Posts:</strong> Track Maintainer, Helper, Porter, etc.</p>
+			
+			<h3>4. RRB JE (Junior Engineer)</h3>
+			<p><strong>Posts:</strong> Junior Engineer in various departments</p>
+		</section>
+		
+		<section>
+			<h2>Resources</h2>
+			<ul>
+				<li><a href="/study?category=railways">Study Materials</a></li>
+				<li><a href="/practice?category=railways">Practice Questions</a></li>
+				<li><a href="/tests?category=railways">Mock Tests</a></li>
+			</ul>
+		</section>
+	</article>
+	
+	<Footer slot="footer" />
+</WikiLayout>

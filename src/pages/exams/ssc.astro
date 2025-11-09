@@ -1,0 +1,296 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Card from '../../components/Card.astro';
+import SocialShare from '../../components/SocialShare.astro';
+
+// Structured Data for SSC Page
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "Course",
+	"name": "SSC Examination Preparation",
+	"description": "Complete guide for Staff Selection Commission exams including CGL, CHSL, GD, MTS with study materials and mock tests.",
+	"provider": {
+		"@type": "EducationalOrganization",
+		"name": "Exam Prep Wiki",
+		"url": Astro.site
+	},
+	"educationalLevel": ["High School", "Graduate"],
+	"audience": {
+		"@type": "Audience",
+		"audienceType": "Students preparing for SSC exams"
+	}
+};
+---
+
+<WikiLayout 
+	title="SSC Exams - CGL, CHSL, GD, MTS" 
+	description="Complete SSC exam preparation guide for CGL, CHSL, GD Constable, MTS. Staff Selection Commission study materials, syllabus, exam pattern, previous papers, and preparation tips."
+	category="SSC"
+	keywords={['SSC', 'SSC CGL', 'SSC CHSL', 'SSC GD', 'SSC MTS', 'Staff Selection Commission', 'SSC preparation', 'SSC syllabus', 'SSC exam pattern', 'SSC previous papers']}
+	structuredData={structuredData}
+>
+	<Header slot="header" />
+	<Sidebar slot="sidebar" category="ssc" />
+	
+	<article class="wiki-article">
+		<Breadcrumb items={[
+			{ label: 'Exams', href: '/exams' },
+			{ label: 'SSC', href: '/exams/ssc' }
+		]} />
+		
+		<h1>Staff Selection Commission (SSC)</h1>
+		
+		<div class="infobox">
+			<table>
+				<tr>
+					<th colspan="2" style="text-align: center;">SSC</th>
+				</tr>
+				<tr>
+					<td><strong>Full Name</strong></td>
+					<td>Staff Selection Commission</td>
+				</tr>
+				<tr>
+					<td><strong>Established</strong></td>
+					<td>1975</td>
+				</tr>
+				<tr>
+					<td><strong>Headquarters</strong></td>
+					<td>New Delhi</td>
+				</tr>
+				<tr>
+					<td><strong>Chairperson</strong></td>
+					<td>Shri Arun Kumar (2025)</td>
+				</tr>
+				<tr>
+					<td><strong>Major Exams</strong></td>
+					<td>CGL, CHSL, GD, MTS, CPO</td>
+				</tr>
+				<tr>
+					<td><strong>Official Website</strong></td>
+					<td><a href="https://ssc.nic.in" target="_blank">ssc.nic.in</a></td>
+				</tr>
+			</table>
+		</div>
+		
+		<section>
+			<h2>Overview</h2>
+			<p>
+				The <strong>Staff Selection Commission (SSC)</strong> is an organization under the Government of India to recruit 
+				staff for various posts in the ministries and departments of the Government of India and in subordinate offices. 
+				It was established in 1975.
+			</p>
+		</section>
+		
+		<SocialShare 
+			title="Staff Selection Commission (SSC)" 
+			description="Complete SSC exam preparation guide for CGL, CHSL, GD, MTS, and CPO. Get study materials, exam patterns, syllabus, and preparation strategies."
+		/>
+		
+		<section>
+			<h2>Major SSC Examinations</h2>
+			
+			<h3>1. SSC Combined Graduate Level (CGL)</h3>
+			<p><strong>Eligibility:</strong> Bachelor's degree</p>
+			<p><strong>Age Limit:</strong> 18-32 years (varies by post)</p>
+			<p><strong>Exam Pattern:</strong></p>
+			<ul>
+				<li><strong>Tier I:</strong> Computer-based exam (100 marks)</li>
+				<li><strong>Tier II:</strong> Computer-based exam (3 papers)</li>
+				<li><strong>Tier III:</strong> Descriptive paper in English/Hindi</li>
+				<li><strong>Tier IV:</strong> Skill Test/Computer Proficiency Test</li>
+			</ul>
+			<p><strong>Popular Posts:</strong> Income Tax Inspector, Auditor, Assistant, Statistical Investigator</p>
+			
+			<h3>2. SSC Combined Higher Secondary Level (CHSL)</h3>
+			<p><strong>Eligibility:</strong> 12th Pass</p>
+			<p><strong>Age Limit:</strong> 18-27 years</p>
+			<p><strong>Exam Pattern:</strong></p>
+			<ul>
+				<li><strong>Tier I:</strong> Computer-based exam (100 marks)</li>
+				<li><strong>Tier II:</strong> Descriptive paper</li>
+				<li><strong>Tier III:</strong> Skill Test/Typing Test</li>
+			</ul>
+			<p><strong>Popular Posts:</strong> Lower Division Clerk (LDC), Data Entry Operator (DEO), Postal Assistant</p>
+			
+			<h3>3. SSC Constable (GD)</h3>
+			<p><strong>Eligibility:</strong> 10th Pass</p>
+			<p><strong>Age Limit:</strong> 18-23 years (relaxation for reserved categories)</p>
+			<p><strong>Exam Pattern:</strong></p>
+			<ul>
+				<li><strong>Computer-based exam:</strong> 100 marks</li>
+				<li><strong>Physical Efficiency Test (PET)</strong></li>
+				<li><strong>Physical Standard Test (PST)</strong></li>
+				<li><strong>Medical Examination</strong></li>
+			</ul>
+			<p><strong>Recruitment For:</strong> BSF, CISF, CRPF, SSB, ITBP, Assam Rifles, SSF</p>
+			
+			<h3>4. SSC Multi-Tasking Staff (MTS)</h3>
+			<p><strong>Eligibility:</strong> 10th Pass</p>
+			<p><strong>Age Limit:</strong> 18-25 years</p>
+			<p><strong>Exam Pattern:</strong></p>
+			<ul>
+				<li><strong>Paper I:</strong> Computer-based exam (100 marks)</li>
+				<li><strong>Paper II:</strong> Descriptive paper</li>
+			</ul>
+			
+			<h3>5. SSC Central Police Organization (CPO)</h3>
+			<p><strong>Eligibility:</strong> Bachelor's degree</p>
+			<p><strong>Age Limit:</strong> 20-25 years</p>
+			<p><strong>Posts:</strong> Sub-Inspector in Delhi Police, CAPFs</p>
+		</section>
+		
+		<section>
+			<h2>Syllabus Overview</h2>
+			
+			<h3>General Intelligence & Reasoning</h3>
+			<ul>
+				<li>Analogies, Similarities, Differences</li>
+				<li>Series, Coding-Decoding</li>
+				<li>Blood Relations, Directions</li>
+				<li>Puzzles, Statement-Conclusion</li>
+			</ul>
+			
+			<h3>General Awareness</h3>
+			<ul>
+				<li>Current Affairs - National & International</li>
+				<li>Indian History, Culture, Geography</li>
+				<li>Indian Polity and Constitution</li>
+				<li>Economic Scene, Sports, General Science</li>
+			</ul>
+			
+			<h3>Quantitative Aptitude</h3>
+			<ul>
+				<li>Number Systems, Simplification</li>
+				<li>Percentages, Ratio & Proportion</li>
+				<li>Average, Profit & Loss</li>
+				<li>Time & Work, Time & Distance</li>
+				<li>Geometry, Trigonometry, Algebra</li>
+			</ul>
+			
+			<h3>English Language</h3>
+			<ul>
+				<li>Vocabulary - Synonyms, Antonyms</li>
+				<li>Grammar - Tenses, Articles, Prepositions</li>
+				<li>Reading Comprehension</li>
+				<li>Sentence Correction, Fill in the blanks</li>
+			</ul>
+		</section>
+		
+		<section>
+			<h2>Study Materials</h2>
+			<div class="card-grid">
+				<Card
+					title="Quantitative Aptitude"
+					description="Mathematics concepts, formulas, and problem-solving techniques"
+					href="/study/ssc/mathematics"
+					category="SSC"
+					tags={['mathematics', 'quantitative aptitude']}
+				/>
+				<Card
+					title="Reasoning Ability"
+					description="Logical and analytical reasoning for SSC exams"
+					href="/study/ssc/reasoning"
+					category="SSC"
+					tags={['reasoning', 'logical reasoning']}
+				/>
+				<Card
+					title="General Awareness"
+					description="Current affairs, history, geography, and general knowledge"
+					href="/study/ssc/general-awareness"
+					category="SSC"
+					tags={['gk', 'current affairs']}
+				/>
+				<Card
+					title="English Language"
+					description="Grammar, vocabulary, and comprehension for SSC"
+					href="/study/ssc/english"
+					category="SSC"
+					tags={['english', 'grammar']}
+				/>
+			</div>
+		</section>
+		
+		<section>
+			<h2>Preparation Strategy</h2>
+			<ol>
+				<li><strong>Understand Exam Pattern:</strong> Familiarize yourself with the exam structure and marking scheme</li>
+				<li><strong>Create Study Plan:</strong> Divide syllabus into manageable sections with timeline</li>
+				<li><strong>Focus on Basics:</strong> Build strong foundation in mathematics and reasoning</li>
+				<li><strong>Daily Practice:</strong> Solve previous year questions and mock tests regularly</li>
+				<li><strong>Time Management:</strong> Practice solving questions within time limits</li>
+				<li><strong>Current Affairs:</strong> Read newspapers daily and make notes</li>
+				<li><strong>Revision:</strong> Regular revision of formulas, shortcuts, and important topics</li>
+			</ol>
+		</section>
+		
+		<section>
+			<h2>Resources</h2>
+			<ul>
+				<li><a href="/study?category=ssc">Study Materials</a></li>
+				<li><a href="/practice?category=ssc">Practice Questions</a></li>
+				<li><a href="/tests?category=ssc">Mock Tests</a></li>
+				<li><a href="/previous-papers/ssc">Previous Year Papers</a></li>
+				<li><a href="/current-affairs">Current Affairs</a></li>
+				<li><a href="/videos?category=ssc">Video Lectures</a></li>
+			</ul>
+		</section>
+		
+		<section>
+			<h2>See Also</h2>
+			<ul>
+				<li><a href="/exams/upsc">UPSC Civil Services</a></li>
+				<li><a href="/exams/railways">Railway Examinations</a></li>
+				<li><a href="/exams/banking">Banking Examinations</a></li>
+			</ul>
+		</section>
+	</article>
+	
+	<Footer slot="footer" />
+</WikiLayout>
+
+<style>
+	.infobox {
+		float: right;
+		margin: 0 0 var(--space-lg) var(--space-lg);
+		width: 300px;
+		background-color: var(--color-bg-secondary);
+		border: 1px solid var(--color-border-light);
+		font-size: var(--font-size-small);
+	}
+	
+	.infobox table {
+		width: 100%;
+		margin: 0;
+		background-color: transparent;
+	}
+	
+	.infobox th {
+		background-color: var(--color-bg-tertiary);
+		padding: var(--space-sm);
+		font-weight: 600;
+	}
+	
+	.infobox td {
+		padding: var(--space-xs) var(--space-sm);
+		vertical-align: top;
+	}
+	
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: var(--space-lg);
+		margin: var(--space-lg) 0;
+	}
+	
+	@media (max-width: 768px) {
+		.infobox {
+			float: none;
+			width: 100%;
+			margin: var(--space-lg) 0;
+		}
+	}
+</style>

@@ -1,0 +1,130 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Card from '../../components/Card.astro';
+import { getCollection } from 'astro:content';
+
+const allStudy = await getCollection('study');
+---
+
+<WikiLayout title="Study Materials" description="Browse all study materials for competitive exams">
+	<Header slot="header" />
+	<Sidebar slot="sidebar" />
+	
+	<article class="wiki-article">
+		<Breadcrumb items={[
+			{ label: 'Study Materials', href: '/study' }
+		]} />
+		
+		<h1>Study Materials</h1>
+		
+		<p class="intro">
+			Comprehensive, well-structured study materials for all major competitive examinations. 
+			All content is organized like encyclopedia articles for easy learning and revision.
+		</p>
+		
+		<section>
+			<h2>Browse by Exam Category</h2>
+			<div class="category-grid">
+				<a href="/study?category=upsc" class="category-box">
+					<span class="category-icon">🏛️</span>
+					<h3>UPSC</h3>
+					<p>{allStudy.filter(e => e.data.category === 'upsc').length} articles</p>
+				</a>
+				<a href="/study?category=ssc" class="category-box">
+					<span class="category-icon">📝</span>
+					<h3>SSC</h3>
+					<p>{allStudy.filter(e => e.data.category === 'ssc').length} articles</p>
+				</a>
+				<a href="/study?category=banking" class="category-box">
+					<span class="category-icon">🏦</span>
+					<h3>Banking</h3>
+					<p>{allStudy.filter(e => e.data.category === 'banking').length} articles</p>
+				</a>
+				<a href="/study?category=railways" class="category-box">
+					<span class="category-icon">🚂</span>
+					<h3>Railways</h3>
+					<p>{allStudy.filter(e => e.data.category === 'railways').length} articles</p>
+				</a>
+			</div>
+		</section>
+		
+		<section>
+			<h2>All Study Materials</h2>
+			<div class="card-grid">
+				{allStudy.map((item) => (
+					<Card
+						title={item.data.title}
+						description={item.data.description}
+						href={`/study/${item.id}`}
+						category={item.data.category.toUpperCase()}
+						tags={item.data.tags}
+					/>
+				))}
+			</div>
+		</section>
+	</article>
+	
+	<Footer slot="footer" />
+</WikiLayout>
+
+<style>
+	.intro {
+		font-size: var(--font-size-large);
+		color: var(--color-text-secondary);
+		margin-bottom: var(--space-xl);
+	}
+	
+	.category-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		gap: var(--space-lg);
+		margin: var(--space-lg) 0 var(--space-2xl);
+	}
+	
+	.category-box {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: var(--space-xl);
+		background-color: var(--color-bg-secondary);
+		border: 1px solid var(--color-border-light);
+		border-radius: var(--radius-md);
+		text-decoration: none;
+		color: var(--color-text-primary);
+		transition: all 0.2s;
+		text-align: center;
+	}
+	
+	.category-box:hover {
+		border-color: var(--color-accent-blue);
+		box-shadow: var(--shadow-md);
+		transform: translateY(-2px);
+	}
+	
+	.category-icon {
+		font-size: 3rem;
+		margin-bottom: var(--space-sm);
+	}
+	
+	.category-box h3 {
+		margin: var(--space-sm) 0;
+		border-bottom: none;
+		padding: 0;
+	}
+	
+	.category-box p {
+		margin: 0;
+		font-size: var(--font-size-small);
+		color: var(--color-text-secondary);
+	}
+	
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: var(--space-lg);
+	}
+</style>

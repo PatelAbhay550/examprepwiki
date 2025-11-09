@@ -1,0 +1,159 @@
+---
+// Header component with Wikipedia-style navigation
+---
+
+<header class="header">
+	<div class="header-container">
+		<div class="header-logo">
+			<a href="/" class="logo-link">
+				<svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<rect width="32" height="32" rx="4" fill="#0645ad"/>
+					<path d="M16 8L8 24H12L16 16L20 24H24L16 8Z" fill="white"/>
+				</svg>
+				<span class="logo-text">Exam Prep Wiki</span>
+			</a>
+		</div>
+		
+		<nav class="header-nav">
+			<ul class="nav-list">
+				<li><a href="/exams">Exams</a></li>
+				<li><a href="/study">Study Material</a></li>
+				<li><a href="/practice">Practice</a></li>
+				<li><a href="/tests">Mock Tests</a></li>
+				<li><a href="/current-affairs">Current Affairs</a></li>
+				<li><a href="/videos">Videos</a></li>
+			</ul>
+		</nav>
+		
+		<div class="header-actions">
+			<button class="search-btn" aria-label="Search">
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+					<path d="M8 14c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6zm12 4l-5-5c1.2-1.5 2-3.4 2-5.5 0-4.7-3.8-8.5-8.5-8.5S0 3.8 0 8.5 3.8 17 8.5 17c2.1 0 4-.8 5.5-2l5 5 1-1z"/>
+				</svg>
+			</button>
+			<a href="/dashboard" class="user-link">Dashboard</a>
+		</div>
+	</div>
+</header>
+
+<style>
+	.header {
+		width: 100%;
+		background-color: var(--color-bg-primary);
+		border-bottom: 1px solid var(--color-border);
+	}
+	
+	.header-container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 var(--space-lg);
+		height: var(--header-height);
+		max-width: 1600px;
+		margin: 0 auto;
+	}
+	
+	.header-logo {
+		display: flex;
+		align-items: center;
+	}
+	
+	.logo-link {
+		display: flex;
+		align-items: center;
+		gap: var(--space-sm);
+		text-decoration: none;
+		color: var(--color-text-primary);
+		font-weight: 600;
+		font-size: 1.25rem;
+	}
+	
+	.logo-link:hover {
+		text-decoration: none;
+		opacity: 0.8;
+	}
+	
+	.logo-icon {
+		width: 32px;
+		height: 32px;
+	}
+	
+	.logo-text {
+		font-family: var(--font-serif);
+	}
+	
+	.header-nav {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+	}
+	
+	.nav-list {
+		display: flex;
+		gap: var(--space-lg);
+		list-style: none;
+		margin: 0;
+	}
+	
+	.nav-list a {
+		color: var(--color-text-primary);
+		text-decoration: none;
+		font-size: var(--font-size-small);
+		padding: var(--space-xs) var(--space-sm);
+		border-radius: var(--radius-sm);
+		transition: background-color 0.2s;
+	}
+	
+	.nav-list a:hover {
+		background-color: var(--color-bg-secondary);
+		text-decoration: none;
+	}
+	
+	.header-actions {
+		display: flex;
+		align-items: center;
+		gap: var(--space-md);
+	}
+	
+	.search-btn {
+		background: none;
+		border: none;
+		color: var(--color-text-primary);
+		cursor: pointer;
+		padding: var(--space-xs);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: var(--radius-sm);
+		transition: background-color 0.2s;
+	}
+	
+	.search-btn:hover {
+		background-color: var(--color-bg-secondary);
+	}
+	
+	.user-link {
+		color: var(--color-link);
+		text-decoration: none;
+		font-size: var(--font-size-small);
+		padding: var(--space-xs) var(--space-md);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-sm);
+		transition: background-color 0.2s;
+	}
+	
+	.user-link:hover {
+		background-color: var(--color-bg-secondary);
+		text-decoration: none;
+	}
+	
+	@media (max-width: 768px) {
+		.header-nav {
+			display: none;
+		}
+		
+		.logo-text {
+			display: none;
+		}
+	}
+</style>

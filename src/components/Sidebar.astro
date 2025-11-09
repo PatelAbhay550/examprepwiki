@@ -1,0 +1,133 @@
+---
+interface Props {
+	category?: string;
+}
+
+const { category = 'all' } = Astro.props;
+
+const examCategories = [
+	{ name: 'UPSC', slug: 'upsc', icon: '🏛️' },
+	{ name: 'SSC', slug: 'ssc', icon: '📝' },
+	{ name: 'Banking', slug: 'banking', icon: '🏦' },
+	{ name: 'Railways', slug: 'railways', icon: '🚂' },
+	{ name: 'State PSC', slug: 'state-psc', icon: '🏛️' },
+	{ name: 'Teaching', slug: 'teaching', icon: '👨‍🏫' },
+	{ name: 'Defense', slug: 'defense', icon: '🛡️' },
+];
+---
+
+<aside class="sidebar">
+	<nav class="sidebar-nav">
+		<h3 class="sidebar-title">Exam Categories</h3>
+		<ul class="category-list">
+			{examCategories.map((exam) => (
+				<li>
+					<a 
+						href={`/exams/${exam.slug}`}
+						class:list={['category-link', { active: category === exam.slug }]}
+					>
+						<span class="category-icon">{exam.icon}</span>
+						<span class="category-name">{exam.name}</span>
+					</a>
+				</li>
+			))}
+		</ul>
+		
+		<h3 class="sidebar-title">Quick Links</h3>
+		<ul class="quick-links">
+			<li><a href="/study">📚 Study Materials</a></li>
+			<li><a href="/practice">✏️ Practice Questions</a></li>
+			<li><a href="/tests">📋 Mock Tests</a></li>
+			<li><a href="/current-affairs">📰 Current Affairs</a></li>
+			<li><a href="/videos">🎥 Video Lessons</a></li>
+			<li><a href="/dashboard">📊 My Dashboard</a></li>
+		</ul>
+		
+		<h3 class="sidebar-title">Tools</h3>
+		<ul class="quick-links">
+			<li><a href="/syllabus">📖 Syllabus</a></li>
+			<li><a href="/previous-papers">📄 Previous Papers</a></li>
+			<li><a href="/exam-calendar">📅 Exam Calendar</a></li>
+			<li><a href="/study-planner">🗓️ Study Planner</a></li>
+		</ul>
+	</nav>
+</aside>
+
+<style>
+	.sidebar {
+		padding: var(--space-lg);
+	}
+	
+	.sidebar-nav {
+		position: sticky;
+		top: calc(var(--header-height) + var(--space-lg));
+	}
+	
+	.sidebar-title {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-base);
+		font-weight: 600;
+		margin: var(--space-lg) 0 var(--space-md) 0;
+		padding-bottom: var(--space-xs);
+		border-bottom: 1px solid var(--color-border-light);
+		color: var(--color-text-primary);
+	}
+	
+	.sidebar-title:first-child {
+		margin-top: 0;
+	}
+	
+	.category-list,
+	.quick-links {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	
+	.category-list li,
+	.quick-links li {
+		margin-bottom: var(--space-xs);
+	}
+	
+	.category-link {
+		display: flex;
+		align-items: center;
+		gap: var(--space-sm);
+		padding: var(--space-sm) var(--space-md);
+		border-radius: var(--radius-sm);
+		color: var(--color-text-primary);
+		text-decoration: none;
+		transition: background-color 0.2s;
+		font-size: var(--font-size-small);
+	}
+	
+	.category-link:hover {
+		background-color: var(--color-bg-tertiary);
+		text-decoration: none;
+	}
+	
+	.category-link.active {
+		background-color: var(--color-accent-blue);
+		color: white;
+		font-weight: 600;
+	}
+	
+	.category-icon {
+		font-size: 1.2em;
+	}
+	
+	.quick-links a {
+		display: block;
+		padding: var(--space-sm) var(--space-md);
+		border-radius: var(--radius-sm);
+		color: var(--color-link);
+		text-decoration: none;
+		font-size: var(--font-size-small);
+		transition: background-color 0.2s;
+	}
+	
+	.quick-links a:hover {
+		background-color: var(--color-bg-tertiary);
+		text-decoration: none;
+	}
+</style>

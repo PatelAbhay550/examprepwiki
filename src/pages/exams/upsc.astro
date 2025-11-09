@@ -1,0 +1,465 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Card from '../../components/Card.astro';
+import SocialShare from '../../components/SocialShare.astro';
+
+// Structured Data for UPSC Page
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "Course",
+	"name": "UPSC Civil Services Examination Preparation",
+	"description": "Comprehensive preparation guide for UPSC Civil Services Examination including IAS, IPS, IFS. Study materials, mock tests, and current affairs.",
+	"provider": {
+		"@type": "EducationalOrganization",
+		"name": "Exam Prep Wiki",
+		"url": Astro.site
+	},
+	"educationalLevel": "Graduate",
+	"audience": {
+		"@type": "Audience",
+		"audienceType": "Graduate students aspiring for civil services"
+	},
+	"hasCourseInstance": {
+		"@type": "CourseInstance",
+		"courseMode": "online",
+		"courseWorkload": "PT12M"
+	}
+};
+---
+
+<WikiLayout 
+	title="UPSC Civil Services Examination" 
+	description="Complete UPSC CSE preparation guide covering Prelims, Mains, and Interview. Study materials for IAS, IPS, IFS with syllabus, exam pattern, previous papers, and preparation strategy."
+	category="UPSC"
+	keywords={['UPSC', 'Civil Services', 'IAS', 'IPS', 'IFS', 'UPSC Prelims', 'UPSC Mains', 'UPSC CSE', 'civil services exam', 'UPSC preparation', 'UPSC syllabus']}
+	structuredData={structuredData}
+>
+	<Header slot="header" />
+	<Sidebar slot="sidebar" category="upsc" />
+	
+	<article class="wiki-article" itemscope itemtype="https://schema.org/Article">
+		<Breadcrumb items={[
+			{ label: 'Exams', href: '/exams' },
+			{ label: 'UPSC', href: '/exams/upsc' }
+		]} />
+		
+		<h1 itemprop="headline">UPSC Civil Services Examination</h1>
+		
+		<div class="infobox">
+			<table>
+				<tr>
+					<th colspan="2" style="text-align: center;">UPSC CSE</th>
+				</tr>
+				<tr>
+					<td><strong>Full Name</strong></td>
+					<td>Union Public Service Commission Civil Services Examination</td>
+				</tr>
+				<tr>
+					<td><strong>Conducted by</strong></td>
+					<td>Union Public Service Commission (UPSC)</td>
+				</tr>
+				<tr>
+					<td><strong>Frequency</strong></td>
+					<td>Annual</td>
+				</tr>
+				<tr>
+					<td><strong>Stages</strong></td>
+					<td>Preliminary, Mains, Interview</td>
+				</tr>
+				<tr>
+					<td><strong>Services</strong></td>
+					<td>IAS, IPS, IFS and 21 other services</td>
+				</tr>
+				<tr>
+					<td><strong>Official Website</strong></td>
+					<td><a href="https://upsc.gov.in" target="_blank">upsc.gov.in</a></td>
+				</tr>
+			</table>
+		</div>
+		
+		<section>
+			<h2>Overview</h2>
+			<p>
+				The <strong>Union Public Service Commission Civil Services Examination (UPSC CSE)</strong> is a national competitive 
+				examination in India conducted by the Union Public Service Commission for recruitment to various Civil Services 
+				of the Government of India, including the Indian Administrative Service (IAS), Indian Foreign Service (IFS), 
+				and Indian Police Service (IPS) among others.
+			</p>
+			<p>
+				The examination is conducted in three stages:
+			</p>
+			<ol>
+				<li><strong>Preliminary Examination (Objective type)</strong> - Screening test</li>
+				<li><strong>Main Examination (Written)</strong> - 9 papers</li>
+				<li><strong>Personality Test (Interview)</strong> - 275 marks</li>
+			</ol>
+		</section>
+		
+		<SocialShare 
+			title="UPSC Civil Services Examination" 
+			description="Complete UPSC CSE preparation guide covering Prelims, Mains, and Interview. Study materials for IAS, IPS, IFS with syllabus, exam pattern, and preparation strategy."
+		/>
+		
+		<section>
+			<h2>Examination Pattern</h2>
+			
+			<h3>Preliminary Examination</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Paper</th>
+						<th>Subject</th>
+						<th>Marks</th>
+						<th>Duration</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Paper I</td>
+						<td>General Studies</td>
+						<td>200</td>
+						<td>2 hours</td>
+					</tr>
+					<tr>
+						<td>Paper II</td>
+						<td>CSAT (Aptitude)</td>
+						<td>200 (Qualifying)</td>
+						<td>2 hours</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<h3>Main Examination</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Paper</th>
+						<th>Subject</th>
+						<th>Marks</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Paper A</td>
+						<td>Compulsory Indian Language</td>
+						<td>300 (Qualifying)</td>
+					</tr>
+					<tr>
+						<td>Paper B</td>
+						<td>English</td>
+						<td>300 (Qualifying)</td>
+					</tr>
+					<tr>
+						<td>Paper I</td>
+						<td>Essay</td>
+						<td>250</td>
+					</tr>
+					<tr>
+						<td>Paper II</td>
+						<td>General Studies I (History, Geography, Society)</td>
+						<td>250</td>
+					</tr>
+					<tr>
+						<td>Paper III</td>
+						<td>General Studies II (Polity, Governance, IR)</td>
+						<td>250</td>
+					</tr>
+					<tr>
+						<td>Paper IV</td>
+						<td>General Studies III (Economy, Environment, S&T)</td>
+						<td>250</td>
+					</tr>
+					<tr>
+						<td>Paper V</td>
+						<td>General Studies IV (Ethics)</td>
+						<td>250</td>
+					</tr>
+					<tr>
+						<td>Paper VI</td>
+						<td>Optional Subject - Paper 1</td>
+						<td>250</td>
+					</tr>
+					<tr>
+						<td>Paper VII</td>
+						<td>Optional Subject - Paper 2</td>
+						<td>250</td>
+					</tr>
+					<tr>
+						<td colspan="2"><strong>Total Written Marks</strong></td>
+						<td><strong>1750</strong></td>
+					</tr>
+					<tr>
+						<td colspan="2"><strong>Interview/Personality Test</strong></td>
+						<td><strong>275</strong></td>
+					</tr>
+					<tr>
+						<td colspan="2"><strong>Grand Total</strong></td>
+						<td><strong>2025</strong></td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+		
+		<section>
+			<h2>Eligibility Criteria</h2>
+			
+			<h3>Educational Qualification</h3>
+			<ul>
+				<li>Bachelor's degree from a recognized university</li>
+				<li>Final year students can also apply</li>
+			</ul>
+			
+			<h3>Age Limit</h3>
+			<ul>
+				<li><strong>General Category:</strong> 21-32 years (6 attempts)</li>
+				<li><strong>OBC:</strong> 21-35 years (9 attempts)</li>
+				<li><strong>SC/ST:</strong> 21-37 years (Unlimited attempts till age limit)</li>
+			</ul>
+			
+			<h3>Nationality</h3>
+			<p>Candidate must be either:</p>
+			<ul>
+				<li>A citizen of India, or</li>
+				<li>A subject of Nepal, or</li>
+				<li>A subject of Bhutan, or</li>
+				<li>A Tibetan refugee who came to India before 1st January 1962</li>
+			</ul>
+		</section>
+		
+		<section>
+			<h2>Study Materials</h2>
+			<div class="card-grid">
+				<Card
+					title="Indian Polity"
+					description="Constitution, Parliament, Judiciary, and Federal Structure"
+					href="/study/upsc/polity"
+					category="UPSC"
+					tags={['polity', 'constitution', 'gs-2']}
+				/>
+				<Card
+					title="Modern Indian History"
+					description="Freedom Struggle, British Raj, and Post-Independence India"
+					href="/study/upsc/history/modern"
+					category="UPSC"
+					tags={['history', 'modern india', 'gs-1']}
+				/>
+				<Card
+					title="Indian Economy"
+					description="Economic Development, Planning, and Current Issues"
+					href="/study/upsc/economy"
+					category="UPSC"
+					tags={['economy', 'development', 'gs-3']}
+				/>
+				<Card
+					title="Geography of India"
+					description="Physical, Human, and Economic Geography"
+					href="/study/upsc/geography"
+					category="UPSC"
+					tags={['geography', 'india', 'gs-1']}
+				/>
+				<Card
+					title="Environment & Ecology"
+					description="Biodiversity, Climate Change, and Conservation"
+					href="/study/upsc/environment"
+					category="UPSC"
+					tags={['environment', 'ecology', 'gs-3']}
+				/>
+				<Card
+					title="Ethics & Integrity"
+					description="Ethics in Public Administration and Case Studies"
+					href="/study/upsc/ethics"
+					category="UPSC"
+					tags={['ethics', 'integrity', 'gs-4']}
+				/>
+			</div>
+			<div class="view-more">
+				<a href="/study?category=upsc" class="btn-link">View all UPSC study materials →</a>
+			</div>
+		</section>
+		
+		<section>
+			<h2>Preparation Strategy</h2>
+			
+			<h3>1. Understand the Syllabus</h3>
+			<p>Thoroughly read and understand the UPSC CSE syllabus for Prelims and Mains.</p>
+			
+			<h3>2. NCERT Foundation</h3>
+			<p>Start with NCERT books from Class 6-12 for building strong fundamentals.</p>
+			
+			<h3>3. Standard Reference Books</h3>
+			<p>Refer to standard books for each subject as recommended by toppers and experts.</p>
+			
+			<h3>4. Current Affairs</h3>
+			<p>Daily newspaper reading (The Hindu/Indian Express) and monthly current affairs compilation.</p>
+			
+			<h3>5. Answer Writing Practice</h3>
+			<p>Regular answer writing practice for Mains is crucial for success.</p>
+			
+			<h3>6. Mock Tests</h3>
+			<p>Take regular mock tests for both Prelims and Mains to assess preparation level.</p>
+			
+			<h3>7. Revision</h3>
+			<p>Multiple revisions are key. Make concise notes for quick revision.</p>
+		</section>
+		
+		<section>
+			<h2>Important Dates (2025 Cycle)</h2>
+			<ul>
+				<li><strong>Notification:</strong> February 2025</li>
+				<li><strong>Application Deadline:</strong> March 2025</li>
+				<li><strong>Preliminary Exam:</strong> May 2025</li>
+				<li><strong>Mains Exam:</strong> September 2025</li>
+				<li><strong>Interview:</strong> February-April 2026</li>
+				<li><strong>Final Result:</strong> May 2026</li>
+			</ul>
+		</section>
+		
+		<section>
+			<h2>Resources</h2>
+			<ul>
+				<li><a href="/study?category=upsc">Study Materials</a></li>
+				<li><a href="/practice?category=upsc">Practice Questions</a></li>
+				<li><a href="/tests?category=upsc">Mock Tests</a></li>
+				<li><a href="/current-affairs">Current Affairs</a></li>
+				<li><a href="/videos?category=upsc">Video Lectures</a></li>
+				<li><a href="/previous-papers/upsc">Previous Year Papers</a></li>
+				<li><a href="/syllabus/upsc">Detailed Syllabus</a></li>
+			</ul>
+		</section>
+		
+		<section>
+			<h2>See Also</h2>
+			<ul>
+				<li><a href="/exams/upsc/ifs">Indian Forest Service (IFS)</a></li>
+				<li><a href="/exams/upsc/nda">National Defence Academy (NDA)</a></li>
+				<li><a href="/exams/upsc/cds">Combined Defence Services (CDS)</a></li>
+				<li><a href="/exams/state-psc">State Public Service Commissions</a></li>
+			</ul>
+		</section>
+		
+		<section>
+			<h2>External Links</h2>
+			<ul>
+				<li><a href="https://upsc.gov.in" target="_blank" rel="noopener">Official UPSC Website</a></li>
+				<li><a href="https://upsc.gov.in/examinations/syllabus" target="_blank" rel="noopener">Official Syllabus</a></li>
+				<li><a href="https://upsc.gov.in/examinations/previous-question-papers" target="_blank" rel="noopener">Previous Year Papers</a></li>
+			</ul>
+		</section>
+	</article>
+	
+	<aside slot="toc" class="page-sidebar">
+		<nav class="toc">
+			<h3>Contents</h3>
+			<ul>
+				<li><a href="#overview">Overview</a></li>
+				<li><a href="#examination-pattern">Examination Pattern</a></li>
+				<li><a href="#eligibility-criteria">Eligibility Criteria</a></li>
+				<li><a href="#study-materials">Study Materials</a></li>
+				<li><a href="#preparation-strategy">Preparation Strategy</a></li>
+				<li><a href="#important-dates-2025-cycle">Important Dates</a></li>
+				<li><a href="#resources">Resources</a></li>
+			</ul>
+		</nav>
+	</aside>
+	
+	<Footer slot="footer" />
+</WikiLayout>
+
+<style>
+	.infobox {
+		float: right;
+		margin: 0 0 var(--space-lg) var(--space-lg);
+		width: 300px;
+		background-color: var(--color-bg-secondary);
+		border: 1px solid var(--color-border-light);
+		font-size: var(--font-size-small);
+	}
+	
+	.infobox table {
+		width: 100%;
+		margin: 0;
+		background-color: transparent;
+	}
+	
+	.infobox th {
+		background-color: var(--color-bg-tertiary);
+		padding: var(--space-sm);
+		font-weight: 600;
+	}
+	
+	.infobox td {
+		padding: var(--space-xs) var(--space-sm);
+		vertical-align: top;
+	}
+	
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: var(--space-lg);
+		margin: var(--space-lg) 0;
+	}
+	
+	.view-more {
+		text-align: center;
+		margin-top: var(--space-xl);
+	}
+	
+	.btn-link {
+		display: inline-block;
+		padding: var(--space-sm) var(--space-lg);
+		background-color: var(--color-accent-blue);
+		color: white;
+		text-decoration: none;
+		border-radius: var(--radius-sm);
+		font-weight: 600;
+	}
+	
+	.btn-link:hover {
+		opacity: 0.9;
+	}
+	
+	.page-sidebar {
+		padding: var(--space-lg);
+	}
+	
+	.toc h3 {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-base);
+		font-weight: 600;
+		margin: 0 0 var(--space-md) 0;
+		padding-bottom: var(--space-xs);
+		border-bottom: 1px solid var(--color-border-light);
+	}
+	
+	.toc ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	
+	.toc li {
+		margin-bottom: var(--space-sm);
+	}
+	
+	.toc a {
+		color: var(--color-link);
+		text-decoration: none;
+		font-size: var(--font-size-small);
+	}
+	
+	.toc a:hover {
+		text-decoration: underline;
+	}
+	
+	@media (max-width: 768px) {
+		.infobox {
+			float: none;
+			width: 100%;
+			margin: var(--space-lg) 0;
+		}
+	}
+</style>

@@ -1,0 +1,478 @@
+---
+import WikiLayout from '../layouts/WikiLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Sidebar from '../components/Sidebar.astro';
+import Card from '../components/Card.astro';
+import SocialShare from '../components/SocialShare.astro';
+import { getCollection } from 'astro:content';
+
+// Get sample content
+const studyMaterials = await getCollection('study');
+const recentStudy = studyMaterials.slice(0, 6);
+
+// Structured Data for Homepage
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "EducationalOrganization",
+	"name": "Exam Prep Wiki",
+	"description": "Free comprehensive resource for competitive exam preparation in India",
+	"url": Astro.site,
+	"logo": new URL('/favicon.svg', Astro.site),
+	"sameAs": [],
+	"educationalLevel": "Higher Education",
+	"audience": {
+		"@type": "Audience",
+		"audienceType": "Students preparing for competitive exams"
+	}
+};
+---
+
+<WikiLayout 
+	title="Home" 
+	description="Exam Prep Wiki - Your comprehensive free resource for competitive exam preparation including UPSC, SSC, Banking, Railways, and more. Study materials, practice questions, mock tests, and current affairs."
+	keywords={['competitive exams', 'UPSC', 'SSC', 'banking exams', 'railway exams', 'exam preparation', 'study materials', 'mock tests', 'current affairs', 'practice questions']}
+	structuredData={structuredData}
+>
+	<Header slot="header" />
+	<Sidebar slot="sidebar" />
+	
+	<!-- Main Content -->
+	<article class="wiki-article">
+		<h1 class="main-title">Welcome to Exam Prep Wiki</h1>
+		<p class="subtitle">The free encyclopedia of competitive exam preparation</p>
+		
+		<section class="intro-section">
+			<p>
+				<strong>Exam Prep Wiki</strong> is a collaborative platform providing comprehensive study materials, 
+				practice questions, mock tests, and current affairs for various competitive examinations in India. 
+				Our Wikipedia-inspired approach ensures well-structured, neutral, and reliable content.
+			</p>
+		</section>
+		
+		<!-- Featured Exams -->
+		<section class="featured-section">
+			<h2>Popular Exam Categories</h2>
+			<div class="exam-grid">
+				<a href="/exams/upsc" class="exam-card">
+					<div class="exam-icon">🏛️</div>
+					<h3>UPSC</h3>
+					<p>Civil Services, NDA, CDS</p>
+				</a>
+				<a href="/exams/ssc" class="exam-card">
+					<div class="exam-icon">📝</div>
+					<h3>SSC</h3>
+					<p>CGL, CHSL, GD, MTS</p>
+				</a>
+				<a href="/exams/banking" class="exam-card">
+					<div class="exam-icon">🏦</div>
+					<h3>Banking</h3>
+					<p>IBPS, SBI, RBI</p>
+				</a>
+				<a href="/exams/railways" class="exam-card">
+					<div class="exam-icon">🚂</div>
+					<h3>Railways</h3>
+					<p>RRB NTPC, ALP, Group D</p>
+				</a>
+				<a href="/exams/state-psc" class="exam-card">
+					<div class="exam-icon">🏛️</div>
+					<h3>State PSC</h3>
+					<p>State Public Service Commissions</p>
+				</a>
+				<a href="/exams/teaching" class="exam-card">
+					<div class="exam-icon">👨‍🏫</div>
+					<h3>Teaching</h3>
+					<p>CTET, NET, SET</p>
+				</a>
+				<a href="/exams/defense" class="exam-card">
+					<div class="exam-icon">🛡️</div>
+					<h3>Defense</h3>
+					<p>CDS, AFCAT, NDA</p>
+				</a>
+				<a href="/exams" class="exam-card view-all">
+					<div class="exam-icon">📚</div>
+					<h3>View All</h3>
+					<p>Explore all exams</p>
+				</a>
+			</div>
+		</section>
+		
+		<SocialShare 
+			title="Exam Prep Wiki - Free Competitive Exam Preparation" 
+			description="Comprehensive free resource for competitive exam preparation including UPSC, SSC, Banking, Railways. Study materials, mock tests, and current affairs."
+		/>
+		
+		<!-- Quick Access -->
+		<section class="quick-access">
+			<h2>Quick Access</h2>
+			<div class="access-grid">
+				<a href="/study" class="access-link">
+					<span class="access-icon">📚</span>
+					<span class="access-text">Study Materials</span>
+				</a>
+				<a href="/practice" class="access-link">
+					<span class="access-icon">✏️</span>
+					<span class="access-text">Practice Questions</span>
+				</a>
+				<a href="/tests" class="access-link">
+					<span class="access-icon">📋</span>
+					<span class="access-text">Mock Tests</span>
+				</a>
+				<a href="/current-affairs" class="access-link">
+					<span class="access-icon">📰</span>
+					<span class="access-text">Current Affairs</span>
+				</a>
+				<a href="/videos" class="access-link">
+					<span class="access-icon">🎥</span>
+					<span class="access-text">Video Lessons</span>
+				</a>
+				<a href="/dashboard" class="access-link">
+					<span class="access-icon">📊</span>
+					<span class="access-text">My Dashboard</span>
+				</a>
+			</div>
+		</section>
+		
+		<!-- Recent Study Materials -->
+		<section class="recent-section">
+			<h2>Recently Updated Study Materials</h2>
+			<div class="card-grid">
+				{recentStudy.map((item) => (
+					<Card
+						title={item.data.title}
+						description={item.data.description}
+						href={`/study/${item.id}`}
+						category={item.data.category.toUpperCase()}
+						tags={item.data.tags}
+					/>
+				))}
+			</div>
+			<div class="view-more">
+				<a href="/study" class="btn-link">View all study materials →</a>
+			</div>
+		</section>
+		
+		<!-- Statistics -->
+		<section class="stats-section">
+			<h2>Platform Statistics</h2>
+			<div class="stats-grid">
+				<div class="stat-card">
+					<div class="stat-number">2,500+</div>
+					<div class="stat-label">Study Articles</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-number">10,000+</div>
+					<div class="stat-label">Practice Questions</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-number">500+</div>
+					<div class="stat-label">Mock Tests</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-number">200+</div>
+					<div class="stat-label">Video Lessons</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- About -->
+		<section class="about-section">
+			<h2>About Exam Prep Wiki</h2>
+			<p>
+				Exam Prep Wiki follows the principles of collaborative knowledge sharing. Our content is:
+			</p>
+			<ul>
+				<li><strong>Comprehensive:</strong> Covering all major competitive exams</li>
+				<li><strong>Well-structured:</strong> Organized like encyclopedia articles for easy navigation</li>
+				<li><strong>Neutral:</strong> Factual and unbiased information</li>
+				<li><strong>Cited:</strong> All content backed by reliable sources</li>
+				<li><strong>Free:</strong> Accessible to all aspirants</li>
+			</ul>
+		</section>
+		
+		<!-- Categories -->
+		<section class="categories-section">
+			<h2>Browse by Subject</h2>
+			<div class="category-tags">
+				<a href="/study?subject=history" class="tag-link">History</a>
+				<a href="/study?subject=geography" class="tag-link">Geography</a>
+				<a href="/study?subject=polity" class="tag-link">Polity</a>
+				<a href="/study?subject=economics" class="tag-link">Economics</a>
+				<a href="/study?subject=science" class="tag-link">Science</a>
+				<a href="/study?subject=mathematics" class="tag-link">Mathematics</a>
+				<a href="/study?subject=reasoning" class="tag-link">Reasoning</a>
+				<a href="/study?subject=english" class="tag-link">English</a>
+				<a href="/study?subject=current-affairs" class="tag-link">Current Affairs</a>
+				<a href="/study" class="tag-link">View all →</a>
+			</div>
+		</section>
+	</article>
+	
+	<!-- Right Sidebar (TOC alternative) -->
+	<aside slot="toc" class="home-sidebar">
+		<div class="sidebar-section">
+			<h3>Featured Topics</h3>
+			<ul class="featured-list">
+				<li><a href="/study/upsc/polity/fundamental-rights">Fundamental Rights</a></li>
+				<li><a href="/study/upsc/history/ancient-india">Ancient India</a></li>
+				<li><a href="/study/ssc/mathematics/basic-math">Basic Mathematics</a></li>
+				<li><a href="/study/banking/banking-system">Banking System</a></li>
+			</ul>
+		</div>
+		
+		<div class="sidebar-section">
+			<h3>Today's Current Affairs</h3>
+			<p class="text-small">
+				<a href="/current-affairs/2025/11/09">November 9, 2025</a>
+			</p>
+			<ul class="featured-list">
+				<li><a href="#">International News</a></li>
+				<li><a href="#">National Updates</a></li>
+				<li><a href="#">Economy & Business</a></li>
+			</ul>
+		</div>
+		
+		<div class="sidebar-section">
+			<h3>Community</h3>
+			<ul class="featured-list">
+				<li><a href="/forum">Discussion Forum</a></li>
+				<li><a href="/contributors">Contributors</a></li>
+				<li><a href="/feedback">Feedback</a></li>
+				<li><a href="/donate">Support Us</a></li>
+			</ul>
+		</div>
+	</aside>
+	
+	<Footer slot="footer" />
+</WikiLayout>
+
+<style>
+	.main-title {
+		font-size: 2.5rem;
+		margin-top: 0;
+		border-bottom: 2px solid var(--color-border);
+	}
+	
+	.subtitle {
+		font-size: var(--font-size-large);
+		color: var(--color-text-secondary);
+		margin-bottom: var(--space-xl);
+	}
+	
+	.intro-section {
+		background-color: var(--color-bg-secondary);
+		padding: var(--space-lg);
+		border-left: 4px solid var(--color-accent-blue);
+		margin-bottom: var(--space-xl);
+	}
+	
+	.featured-section {
+		margin-bottom: var(--space-2xl);
+	}
+	
+	.exam-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		gap: var(--space-md);
+		margin-top: var(--space-lg);
+	}
+	
+	.exam-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: var(--space-lg);
+		background-color: var(--color-bg-secondary);
+		border: 1px solid var(--color-border-light);
+		border-radius: var(--radius-md);
+		text-decoration: none;
+		color: var(--color-text-primary);
+		transition: all 0.2s;
+	}
+	
+	.exam-card:hover {
+		border-color: var(--color-accent-blue);
+		box-shadow: var(--shadow-md);
+		transform: translateY(-2px);
+	}
+	
+	.exam-icon {
+		font-size: 3rem;
+		margin-bottom: var(--space-sm);
+	}
+	
+	.exam-card h3 {
+		margin: var(--space-sm) 0;
+		font-size: var(--font-size-h3);
+		border-bottom: none;
+	}
+	
+	.exam-card p {
+		margin: 0;
+		font-size: var(--font-size-small);
+		color: var(--color-text-secondary);
+		text-align: center;
+	}
+	
+	.exam-card.view-all {
+		border: 2px dashed var(--color-border);
+		background-color: transparent;
+	}
+	
+	.quick-access {
+		margin-bottom: var(--space-2xl);
+	}
+	
+	.access-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+		gap: var(--space-md);
+		margin-top: var(--space-lg);
+	}
+	
+	.access-link {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-sm);
+		padding: var(--space-lg);
+		background-color: var(--color-bg-primary);
+		border: 1px solid var(--color-border-light);
+		border-radius: var(--radius-sm);
+		text-decoration: none;
+		color: var(--color-text-primary);
+		transition: background-color 0.2s;
+	}
+	
+	.access-link:hover {
+		background-color: var(--color-bg-secondary);
+	}
+	
+	.access-icon {
+		font-size: 2rem;
+	}
+	
+	.access-text {
+		font-size: var(--font-size-small);
+		text-align: center;
+	}
+	
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: var(--space-lg);
+		margin-top: var(--space-lg);
+	}
+	
+	.view-more {
+		text-align: center;
+		margin-top: var(--space-xl);
+	}
+	
+	.btn-link {
+		display: inline-block;
+		padding: var(--space-sm) var(--space-lg);
+		background-color: var(--color-accent-blue);
+		color: white;
+		text-decoration: none;
+		border-radius: var(--radius-sm);
+		font-weight: 600;
+		transition: opacity 0.2s;
+	}
+	
+	.btn-link:hover {
+		opacity: 0.9;
+	}
+	
+	.stats-section {
+		margin-bottom: var(--space-2xl);
+	}
+	
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: var(--space-lg);
+		margin-top: var(--space-lg);
+	}
+	
+	.stat-card {
+		text-align: center;
+		padding: var(--space-xl);
+		background-color: var(--color-bg-secondary);
+		border: 1px solid var(--color-border-light);
+		border-radius: var(--radius-sm);
+	}
+	
+	.stat-number {
+		font-size: 2.5rem;
+		font-weight: 700;
+		color: var(--color-accent-blue);
+		font-family: var(--font-serif);
+	}
+	
+	.stat-label {
+		margin-top: var(--space-sm);
+		color: var(--color-text-secondary);
+	}
+	
+	.category-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-sm);
+		margin-top: var(--space-lg);
+	}
+	
+	.tag-link {
+		display: inline-block;
+		padding: var(--space-sm) var(--space-md);
+		background-color: var(--color-bg-secondary);
+		border: 1px solid var(--color-border-light);
+		border-radius: var(--radius-sm);
+		text-decoration: none;
+		color: var(--color-link);
+		font-size: var(--font-size-small);
+		transition: all 0.2s;
+	}
+	
+	.tag-link:hover {
+		background-color: var(--color-bg-tertiary);
+		border-color: var(--color-accent-blue);
+	}
+	
+	.home-sidebar {
+		padding: var(--space-lg);
+	}
+	
+	.sidebar-section {
+		margin-bottom: var(--space-xl);
+	}
+	
+	.sidebar-section h3 {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-base);
+		font-weight: 600;
+		margin: 0 0 var(--space-md) 0;
+		padding-bottom: var(--space-xs);
+		border-bottom: 1px solid var(--color-border-light);
+	}
+	
+	.featured-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	
+	.featured-list li {
+		margin-bottom: var(--space-sm);
+	}
+	
+	.featured-list a {
+		color: var(--color-link);
+		text-decoration: none;
+		font-size: var(--font-size-small);
+	}
+	
+	.featured-list a:hover {
+		text-decoration: underline;
+	}
+</style>

@@ -1,0 +1,117 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+	headings?: MarkdownHeading[];
+}
+
+const { headings = [] } = Astro.props;
+---
+
+{headings.length > 0 && (
+	<nav class="toc" aria-label="Table of Contents">
+		<h3 class="toc-title">Contents</h3>
+		<ul class="toc-list">
+			{headings.map((heading) => (
+				<li class={`toc-item toc-level-${heading.depth}`}>
+					<a href={`#${heading.slug}`} class="toc-link">
+						{heading.text}
+					</a>
+				</li>
+			))}
+		</ul>
+	</nav>
+)}
+
+<style>
+	.toc {
+		padding: var(--space-lg);
+		position: sticky;
+		top: calc(var(--header-height) + var(--space-lg));
+	}
+	
+	.toc-title {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-base);
+		font-weight: 600;
+		margin: 0 0 var(--space-md) 0;
+		padding-bottom: var(--space-xs);
+		border-bottom: 1px solid var(--color-border-light);
+		color: var(--color-text-primary);
+	}
+	
+	.toc-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	
+	.toc-item {
+		margin-bottom: var(--space-xs);
+	}
+	
+	.toc-level-2 {
+		margin-left: 0;
+	}
+	
+	.toc-level-3 {
+		margin-left: var(--space-md);
+	}
+	
+	.toc-level-4 {
+		margin-left: var(--space-lg);
+	}
+	
+	.toc-link {
+		display: block;
+		padding: var(--space-xs) var(--space-sm);
+		color: var(--color-link);
+		text-decoration: none;
+		font-size: var(--font-size-small);
+		line-height: 1.4;
+		border-radius: var(--radius-sm);
+		transition: background-color 0.2s;
+	}
+	
+	.toc-link:hover {
+		background-color: var(--color-bg-tertiary);
+		text-decoration: none;
+	}
+	
+	.toc-link:active {
+		color: var(--color-link-active);
+	}
+</style>
+
+<script>
+	// Highlight active section in TOC
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				const id = entry.target.getAttribute('id');
+				const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
+				
+				if (entry.isIntersecting && tocLink) {
+					document.querySelectorAll('.toc-link').forEach((link) => {
+						link.classList.remove('active');
+					});
+					tocLink.classList.add('active');
+				}
+			});
+		},
+		{ rootMargin: '-100px 0px -80% 0px' }
+	);
+	
+	// Observe all headings
+	document.querySelectorAll('h2[id], h3[id], h4[id]').forEach((heading) => {
+		observer.observe(heading);
+	});
+</script>
+
+<style is:global>
+	.toc-link.active {
+		background-color: var(--color-bg-tertiary);
+		font-weight: 600;
+		color: var(--color-accent-blue);
+	}
+</style>
