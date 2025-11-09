@@ -58,18 +58,16 @@ const tests = defineCollection({
 
 // Current affairs collection
 const currentAffairs = defineCollection({
-	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/current-affairs' }),
+	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/currentAffairs' }),
 	schema: z.object({
 		title: z.string(),
 		date: z.date(),
 		category: z.string(),
-		summary: z.string(),
+		topics: z.array(z.string()).optional(),
+		importance: z.enum(['high', 'medium', 'low']).optional(),
+		exams: z.array(z.string()).optional(),
 		tags: z.array(z.string()).optional(),
-		relevantExams: z.array(z.string()).optional(),
-		sources: z.array(z.object({
-			title: z.string(),
-			url: z.string(),
-		})).optional(),
+		summary: z.string(),
 	}),
 });
 
