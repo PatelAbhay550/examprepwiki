@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 interface Props {
 	title: string;
 	description: string;
@@ -75,9 +77,6 @@ const ogImageURL = new URL(ogImage, Astro.site);
 	<!-- Favicon -->
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-	
-	<!-- Stylesheet -->
-	<link rel="stylesheet" href="/src/styles/global.css">
 </head>
 <body>
 	<div class="wiki-container">
