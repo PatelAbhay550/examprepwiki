@@ -36,7 +36,7 @@ Egypt has officially opened the **Grand Egyptian Museum (GEM)**, the world's lar
 
 ### Central Attraction
 
-The **complete collection from King Tutankhamun's tomb** is the museum's crown jewel. This marks the **first time since 1922** (when the tomb was discovered by Howard Carter) that the entire collection is displayed together in one location.
+The **complete collection from King Tutankhamun's tomb** is the museum's central attraction, while other artifacts like **colossal statue of Ramses II**, and the **Khufu Solar Boat** are also prominently displayed. This marks the **first time since 1922** (when the tomb was discovered by Howard Carter) that the entire collection is displayed together in one location.
 
 ## Inauguration Ceremony
 
@@ -80,6 +80,11 @@ The museum opened its doors to the general public three days after the official 
    - Largest collection of Egyptian antiquities in the world
    - Many items never before displayed publicly
    - Comprehensive representation of ancient Egyptian civilization
+
+4. **Special Exhibits**
+   - Colossal statue of Ramses II
+   - Khufu Solar Boat
+   - Interactive displays and educational installations
 
 ## Significance
 
@@ -163,16 +168,16 @@ This development is significant for various competitive examinations because it 
 - **Answer:** The world's largest archaeological museum dedicated to a single civilization, located near the Giza pyramids in Egypt, housing over 100,000 ancient Egyptian artifacts.
 
 **2. When was the Grand Egyptian Museum officially opened to the public?**
-- **Answer:** November 4, 2025 (Inauguration ceremony: November 1, 2025)
+- **Answer:** GEM will open on November 4, 2025 (Inauguration ceremony: November 1, 2025) for public visits.
 
 **3. What is the central attraction of the GEM?**
-- **Answer:** The complete collection from King Tutankhamun's tomb, displayed together for the first time since its discovery in 1922.
+- **Answer:** The complete collection from King Tutankhamun's tomb, displayed together for the first time since its discovery in 1922 is the central attraction, along with other notable artifacts like the colossal statue of Ramses II and the Khufu Solar Boat.
 
 **4. How much did the Grand Egyptian Museum cost to build?**
-- **Answer:** Approximately $1.2 billion USD
+- **Answer:** Some reports cite Approximately $1.2 billion USD was spent on the construction of the museum.
 
 **5. Where is the Grand Egyptian Museum located?**
-- **Answer:** On the Giza Plateau, about 2 kilometers from the Giza pyramids and 8 kilometers from Cairo, Egypt.
+- **Answer:** Grand Egyptian Museum is located on the Giza Plateau, about 2 kilometers from the Giza pyramids and 8 kilometers from Cairo, Egypt.
 
 ## Key Points to Remember
 
@@ -184,7 +189,7 @@ This development is significant for various competitive examinations because it 
 4. **Construction Time:** 20 years (2005-2025)
 5. **Artifacts:** 100,000+ pieces
 6. **Coverage:** 30 dynasties of ancient Egypt
-7. **Main Attraction:** Complete King Tutankhamun collection
+7. **Main Attraction:** Complete King Tutankhamun collection, Khufu Solar Boat, Ramses II statue
 8. **Inauguration:** November 1, 2025
 9. **Public Opening:** November 4, 2025
 10. **Distinction:** World's largest single-civilization museum
