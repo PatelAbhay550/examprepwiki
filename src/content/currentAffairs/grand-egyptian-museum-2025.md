@@ -221,35 +221,35 @@ This development is significant for various competitive examinations because it 
 
 ### Multiple Choice Questions
 
-**Q1. Where is the Grand Egyptian Museum located?**
+**Q1. Where is the Grand Egyptian Museum located?**  
 a) Cairo city center  
 b) Alexandria  
 c) Giza Plateau  
 d) Luxor  
 **Answer:** c) Giza Plateau
 
-**Q2. When did the Grand Egyptian Museum open to the public?**
+**Q2. When did the Grand Egyptian Museum open to the public?**  
 a) November 1, 2025  
 b) November 4, 2025  
 c) October 2025  
 d) December 2025  
 **Answer:** b) November 4, 2025
 
-**Q3. What is unique about the King Tutankhamun collection at GEM?**
+**Q3. What is unique about the King Tutankhamun collection at GEM?**  
 a) It's a replica collection  
 b) First time displayed together since 1922  
 c) Only has the gold mask  
 d) It's on loan from British Museum  
 **Answer:** b) First time displayed together since 1922
 
-**Q4. What makes the Grand Egyptian Museum unique globally?**
+**Q4. What makes the Grand Egyptian Museum unique globally?**  
 a) Most expensive museum  
 b) Largest museum by area  
 c) Largest museum for a single civilization  
 d) Oldest museum in the world  
 **Answer:** c) Largest museum for a single civilization
 
-**Q5. How many dynasties of ancient Egypt does GEM cover?**
+**Q5. How many dynasties of ancient Egypt does GEM cover?**  
 a) 10 dynasties  
 b) 20 dynasties  
 c) 30 dynasties  
