@@ -1,0 +1,304 @@
+---
+import WikiLayout from '../layouts/WikiLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<WikiLayout 
+	title="404 - Page Not Found" 
+	description="The page you're looking for doesn't exist. Return to Exam Prep Wiki homepage or explore our study materials."
+>
+	<Header slot="header" />
+	
+	<div class="error-container">
+		<div class="error-content">
+			<div class="error-icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+					<circle cx="12" cy="12" r="10"></circle>
+					<line x1="12" y1="8" x2="12" y2="12"></line>
+					<line x1="12" y1="16" x2="12.01" y2="16"></line>
+				</svg>
+			</div>
+			
+			<h1 class="error-code">404</h1>
+			<h2 class="error-title">Page Not Found</h2>
+			<p class="error-description">
+				Oops! The page you're looking for doesn't exist. It might have been moved, deleted, 
+				or perhaps the URL was typed incorrectly.
+			</p>
+			
+			<div class="error-actions">
+				<a href="/" class="btn btn-primary">
+					🏠 Go to Homepage
+				</a>
+				<a href="/study" class="btn btn-secondary">
+					📚 Browse Study Materials
+				</a>
+			</div>
+			
+			<div class="suggestions-section">
+				<h3>Popular Pages</h3>
+				<div class="suggestions-grid">
+					<a href="/exams/upsc" class="suggestion-card">
+						<span class="suggestion-icon">🏛️</span>
+						<span class="suggestion-title">UPSC</span>
+						<span class="suggestion-desc">Civil Services Exam</span>
+					</a>
+					<a href="/exams/ssc" class="suggestion-card">
+						<span class="suggestion-icon">📝</span>
+						<span class="suggestion-title">SSC</span>
+						<span class="suggestion-desc">Staff Selection Commission</span>
+					</a>
+					<a href="/exams/banking" class="suggestion-card">
+						<span class="suggestion-icon">🏦</span>
+						<span class="suggestion-title">Banking</span>
+						<span class="suggestion-desc">IBPS, SBI, RBI</span>
+					</a>
+					<a href="/exams/railways" class="suggestion-card">
+						<span class="suggestion-icon">🚂</span>
+						<span class="suggestion-title">Railways</span>
+						<span class="suggestion-desc">RRB Exams</span>
+					</a>
+					<a href="/current-affairs" class="suggestion-card">
+						<span class="suggestion-icon">📰</span>
+						<span class="suggestion-title">Current Affairs</span>
+						<span class="suggestion-desc">Daily Updates</span>
+					</a>
+					<a href="/study" class="suggestion-card">
+						<span class="suggestion-icon">📖</span>
+						<span class="suggestion-title">Study Materials</span>
+						<span class="suggestion-desc">Comprehensive Notes</span>
+					</a>
+				</div>
+			</div>
+			
+			<div class="help-section">
+				<p class="help-text">
+					Still can't find what you're looking for? Try using the search feature or 
+					<a href="/" class="help-link">explore our categories</a>.
+				</p>
+			</div>
+		</div>
+	</div>
+	
+	<Footer slot="footer" />
+</WikiLayout>
+
+<style>
+	.error-container {
+		min-height: 70vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--space-2xl) var(--space-lg);
+		background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+	}
+	
+	.error-content {
+		max-width: 800px;
+		text-align: center;
+		background-color: var(--color-bg-primary);
+		padding: var(--space-2xl);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-lg);
+	}
+	
+	.error-icon {
+		color: var(--color-accent-blue);
+		margin-bottom: var(--space-lg);
+		animation: bounce 2s infinite;
+	}
+	
+	@keyframes bounce {
+		0%, 100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-10px);
+		}
+	}
+	
+	.error-code {
+		font-size: 6rem;
+		font-weight: 700;
+		color: var(--color-accent-blue);
+		margin: 0;
+		line-height: 1;
+		font-family: var(--font-serif);
+	}
+	
+	.error-title {
+		font-size: 2rem;
+		color: var(--color-text-primary);
+		margin: var(--space-md) 0;
+		font-family: var(--font-serif);
+	}
+	
+	.error-description {
+		font-size: var(--font-size-large);
+		color: var(--color-text-secondary);
+		line-height: 1.6;
+		margin-bottom: var(--space-xl);
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	.error-actions {
+		display: flex;
+		gap: var(--space-md);
+		justify-content: center;
+		margin-bottom: var(--space-2xl);
+		flex-wrap: wrap;
+	}
+	
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-sm);
+		padding: var(--space-md) var(--space-xl);
+		border-radius: var(--radius-md);
+		text-decoration: none;
+		font-weight: 600;
+		font-size: var(--font-size-base);
+		transition: all 0.3s ease;
+		border: 2px solid transparent;
+	}
+	
+	.btn-primary {
+		background-color: var(--color-accent-blue);
+		color: white;
+	}
+	
+	.btn-primary:hover {
+		background-color: #0536a0;
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+	
+	.btn-secondary {
+		background-color: var(--color-bg-secondary);
+		color: var(--color-text-primary);
+		border-color: var(--color-border);
+	}
+	
+	.btn-secondary:hover {
+		border-color: var(--color-accent-blue);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-sm);
+	}
+	
+	.suggestions-section {
+		margin-top: var(--space-2xl);
+		padding-top: var(--space-xl);
+		border-top: 1px solid var(--color-border);
+	}
+	
+	.suggestions-section h3 {
+		font-size: var(--font-size-large);
+		color: var(--color-text-primary);
+		margin-bottom: var(--space-lg);
+		font-family: var(--font-serif);
+	}
+	
+	.suggestions-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		gap: var(--space-md);
+		margin-bottom: var(--space-xl);
+	}
+	
+	.suggestion-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-xs);
+		padding: var(--space-lg);
+		background-color: var(--color-bg-secondary);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		text-decoration: none;
+		transition: all 0.2s ease;
+	}
+	
+	.suggestion-card:hover {
+		border-color: var(--color-accent-blue);
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-md);
+	}
+	
+	.suggestion-icon {
+		font-size: 2rem;
+		margin-bottom: var(--space-xs);
+	}
+	
+	.suggestion-title {
+		font-weight: 700;
+		color: var(--color-text-primary);
+		font-size: var(--font-size-base);
+	}
+	
+	.suggestion-desc {
+		font-size: var(--font-size-small);
+		color: var(--color-text-secondary);
+		text-align: center;
+	}
+	
+	.help-section {
+		padding-top: var(--space-lg);
+		border-top: 1px solid var(--color-border-light);
+	}
+	
+	.help-text {
+		font-size: var(--font-size-small);
+		color: var(--color-text-secondary);
+		margin: 0;
+	}
+	
+	.help-link {
+		color: var(--color-accent-blue);
+		text-decoration: none;
+		font-weight: 600;
+	}
+	
+	.help-link:hover {
+		text-decoration: underline;
+	}
+	
+	@media (max-width: 768px) {
+		.error-code {
+			font-size: 4rem;
+		}
+		
+		.error-title {
+			font-size: 1.5rem;
+		}
+		
+		.error-description {
+			font-size: var(--font-size-base);
+		}
+		
+		.error-actions {
+			flex-direction: column;
+		}
+		
+		.btn {
+			width: 100%;
+			justify-content: center;
+		}
+		
+		.suggestions-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+	
+	@media (max-width: 480px) {
+		.error-content {
+			padding: var(--space-lg);
+		}
+		
+		.suggestions-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
