@@ -9,7 +9,7 @@ tags: ["current affairs", "international relations", "art and culture", "egypt",
 summary: "Egypt inaugurated the Grand Egyptian Museum (GEM) near Giza pyramids on November 1, 2025, opening to public on November 4. The $1.2 billion project houses 100,000+ artifacts including complete King Tutankhamun collection."
 ---
 
-<img src="https://cc-production-uploads-bucket.s3.amazonaws.com/uploads/2025/11/One_of_the_gates_of_the_Grand_Egyptian_MuseumMainWEB-1.png" alt="Egypt Opens Grand Egyptian Museum" style="width: 90%; border-radius: 10px;"/>
+<img src="https://cc-production-uploads-bucket.s3.amazonaws.com/uploads/2025/11/One_of_the_gates_of_the_Grand_Egyptian_MuseumMainWEB-1.png" alt="Egypt Opens Grand Egyptian Museum" style="width: 100%; border-radius: 10px; margin-bottom: 10px;"/>
 
 **Date:** November 4, 2025  
 **Location:** Giza Plateau, Egypt  
@@ -325,5 +325,6 @@ The opening of the Grand Egyptian Museum represents a historic moment in cultura
 **Last Updated:** November 9, 2025  
 **Source:** International news agencies, Egyptian government official announcements  
 **Relevance:** High - Recent development with multi-dimensional exam significance
+
 
 
