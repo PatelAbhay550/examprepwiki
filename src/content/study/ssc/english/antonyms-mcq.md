@@ -950,6 +950,94 @@ Antonyms are words that have opposite meanings. This is an important topic in SS
 
 ---
 
+### Question 33
+
+**Select the most appropriate ANTONYM of the underlined word in the given sentence.**
+
+*Anthony Trollope was an **industrious** and disciplined writer.*
+
+1. Exhausting
+2. Skittish
+3. Dizzy
+4. Lazy
+
+<details>
+<summary><strong>Show Answer</strong></summary>
+
+**Answer: 4. Lazy**
+
+**Explanation:**
+- **Industrious** means diligent and hard-working; dedicated, assiduous, energetic
+- **Lazy** means unwilling to work or use energy; idle, sluggish, indolent
+- These are direct opposites regarding work ethic and effort
+- Other options:
+  - Exhausting = very tiring (describes something that makes others tired, not the person's nature)
+  - Skittish = nervous, easily frightened (unrelated to work ethic)
+  - Dizzy = feeling unsteady (unrelated to industriousness)
+
+</details>
+
+---
+
+### Question 34
+
+**Select the most appropriate ANTONYM of the word 'Contaminate' from the given sentence.**
+
+*She spent the entire night working non-stop to **clean** the blood stains from the rug.*
+
+1. rug
+2. spent
+3. working
+4. clean
+
+<details>
+<summary><strong>Show Answer</strong></summary>
+
+**Answer: 4. clean**
+
+**Explanation:**
+- **Contaminate** means to make something impure or unsuitable by contact with something unclean; pollute, taint, defile
+- **Clean** means to make free from dirt, marks, or stains; purify, cleanse, sanitize
+- These are direct opposites - contaminate makes something dirty, clean removes dirt
+- Note: The question asks for the antonym of "contaminate" FROM the sentence, and "clean" is the word in the sentence
+- Other options:
+  - Rug = carpet (noun, unrelated)
+  - Spent = used time (past tense verb, unrelated)
+  - Working = doing work (verb, unrelated to cleanliness)
+
+</details>
+
+---
+
+### Question 35
+
+**Select the most appropriate ANTONYM of the underlined word in the given sentence.**
+
+*Please don't touch that, it's **flammable**.*
+
+1. Non-combustible
+2. Nonexplosive
+3. Incendiary
+4. Fire-resistant
+
+<details>
+<summary><strong>Show Answer</strong></summary>
+
+**Answer: 1. Non-combustible**
+
+**Explanation:**
+- **Flammable** means easily set on fire; combustible, inflammable, ignitable
+- **Non-combustible** means not capable of catching fire and burning; fireproof, incombustible
+- These are direct opposites regarding ability to burn
+- Other options:
+  - Nonexplosive = not likely to explode (related but doesn't mean it can't burn)
+  - Incendiary = causing fires (synonym)
+  - Fire-resistant = resistant to fire but can still burn under extreme conditions (partial opposite, but non-combustible is more complete)
+
+</details>
+
+---
+
 ## Important Antonym Pairs for SSC CHSL
 
 Here's a quick reference list of common antonym pairs frequently asked in SSC CHSL:
