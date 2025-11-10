@@ -81,7 +81,7 @@ Antonyms are words that have opposite meanings. This is an important topic in SS
 
 **Select the most appropriate ANTONYM of the word 'bold' in the given sentence.**
 
-*A person can be friendly, timid, clever, or fearless based on the context of the situation.*
+*A person can be friendly, timid, clever, or **fearless** based on the context of the situation.*
 
 1. friendly
 2. clever
