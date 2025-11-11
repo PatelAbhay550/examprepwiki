@@ -166,7 +166,7 @@ Synonyms are words that have similar or nearly the same meanings. This is an imp
 
 ### Question 6
 
-**Select the most appropriate synonym of the bracketed word in the following sentence to fill in the blank.**
+**Select the most appropriate synonym of the bracketed word in the following sentence to fill the blank.**
 
 *Lead paint is an environmental ________ (danger) and can harm children.*
 
