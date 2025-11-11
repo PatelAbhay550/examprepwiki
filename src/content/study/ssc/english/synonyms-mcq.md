@@ -817,7 +817,3 @@ Remember: **Quality over quantity**. Learn 10 words thoroughly rather than 50 su
 
 ---
 
-**Last Updated:** November 11, 2025  
-**Difficulty Level:** Intermediate  
-**Recommended Time:** 60-90 minutes for complete practice  
-**Total Questions:** 20 comprehensive MCQs with detailed explanations
