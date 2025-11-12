@@ -1,0 +1,426 @@
+---
+import { getCollection } from 'astro:content';
+import WikiLayout from '../../layouts/WikiLayout.astro';
+
+const qaEntries = await getCollection('qa');
+
+// Sort by difficulty and category
+const sortedQA = qaEntries.sort((a, b) => {
+	const difficultyOrder = { easy: 1, medium: 2, hard: 3 };
+	return difficultyOrder[b.data.difficulty] - difficultyOrder[a.data.difficulty];
+});
+
+// Group by category
+const qaByCategory = sortedQA.reduce((acc, entry) => {
+	const category = entry.data.category;
+	if (!acc[category]) {
+		acc[category] = [];
+	}
+	acc[category].push(entry);
+	return acc;
+}, {} as Record<string, typeof sortedQA>);
+---
+
+<WikiLayout 
+	title="Questions & Answers - Exam Prep Wiki" 
+	description="Comprehensive question-answer database for competitive exams. SEO-optimized pages with detailed explanations, exam tips, and related topics."
+>
+	<div class="wiki-container">
+		<main class="wiki-main-content">
+			<article class="wiki-article">
+				<header class="page-header">
+					<h1>Questions & Answers</h1>
+					<p class="lead">
+						Discover comprehensive answers to common competitive exam questions. Each question page is optimized with detailed explanations, exam tips, mnemonics, and related topics to help you master your exam preparation.
+					</p>
+				</header>
+
+				<section class="intro-section">
+					<h2>About This Section</h2>
+					<p>
+						This collection features carefully curated questions that frequently appear in competitive examinations like UPSC, SSC, Banking, Railways, and other government exams. Each question has:
+					</p>
+					<ul class="feature-list">
+						<li><strong>Quick Answer:</strong> Get the answer immediately</li>
+						<li><strong>Detailed Explanation:</strong> Understand the concept thoroughly</li>
+						<li><strong>Exam Tips:</strong> Memory tricks and important points</li>
+						<li><strong>Related Questions:</strong> Similar questions you might encounter</li>
+						<li><strong>References:</strong> Sources for further study</li>
+					</ul>
+				</section>
+
+				<section class="stats-section">
+					<div class="stats-grid">
+						<div class="stat-card">
+							<div class="stat-number">{qaEntries.length}</div>
+							<div class="stat-label">Total Questions</div>
+						</div>
+						<div class="stat-card">
+							<div class="stat-number">{Object.keys(qaByCategory).length}</div>
+							<div class="stat-label">Categories</div>
+						</div>
+						<div class="stat-card">
+							<div class="stat-number">{qaEntries.filter(q => q.data.difficulty === 'hard').length}</div>
+							<div class="stat-label">Tough Questions</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Questions by Category -->
+				{Object.entries(qaByCategory).map(([category, questions]) => questions && (
+					<section class="category-section">
+						<h2 class="category-title">
+							{category.charAt(0).toUpperCase() + category.slice(1)} Questions
+						</h2>
+						
+						<div class="questions-grid">
+							{questions.map((entry) => (
+								<article class="question-card">
+									<a href={`/qa/${entry.id}`} class="question-link">
+										<h3 class="question-title">{entry.data.question}</h3>
+										
+										<div class="question-meta">
+											<span class={`difficulty-badge difficulty-${entry.data.difficulty}`}>
+												{entry.data.difficulty}
+											</span>
+											<span class="answer-preview">
+												{entry.data.answer}
+											</span>
+										</div>
+
+										<div class="exam-tags">
+											{entry.data.examRelevance.slice(0, 3).map((exam: string) => (
+												<span class="exam-tag">{exam}</span>
+											))}
+											{entry.data.examRelevance.length > 3 && (
+												<span class="exam-tag">+{entry.data.examRelevance.length - 3} more</span>
+											)}
+										</div>
+									</a>
+								</article>
+							))}
+						</div>
+					</section>
+				))}
+			</article>
+		</main>
+
+		<!-- Sidebar -->
+		<aside class="wiki-sidebar">
+			<div class="sidebar-box">
+				<h3>Browse by Difficulty</h3>
+				<ul class="filter-list">
+					<li>
+						<a href="#easy" class="filter-link">
+							Easy ({qaEntries.filter(q => q.data.difficulty === 'easy').length})
+						</a>
+					</li>
+					<li>
+						<a href="#medium" class="filter-link">
+							Medium ({qaEntries.filter(q => q.data.difficulty === 'medium').length})
+						</a>
+					</li>
+					<li>
+						<a href="#hard" class="filter-link">
+							Hard ({qaEntries.filter(q => q.data.difficulty === 'hard').length})
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="sidebar-box">
+				<h3>Exam Categories</h3>
+				<ul class="filter-list">
+					{Object.keys(qaByCategory).map((category) => {
+						const categoryQuestions = qaByCategory[category];
+						return categoryQuestions && (
+							<li>
+								<a href={`#${category}`} class="filter-link">
+									{category.charAt(0).toUpperCase() + category.slice(1)} ({categoryQuestions.length})
+								</a>
+							</li>
+						);
+					})}
+				</ul>
+			</div>
+
+			<div class="sidebar-box tips-box">
+				<h3>💡 Study Tips</h3>
+				<ul class="tips-list">
+					<li>Read the detailed explanation thoroughly</li>
+					<li>Use mnemonics provided for better retention</li>
+					<li>Check related questions for comprehensive coverage</li>
+					<li>Bookmark important questions for revision</li>
+				</ul>
+			</div>
+		</aside>
+	</div>
+</WikiLayout>
+
+<style>
+	.wiki-container {
+		display: grid;
+		grid-template-columns: 1fr 300px;
+		gap: 2rem;
+		max-width: 1400px;
+		margin: 0 auto;
+	}
+
+	@media (max-width: 968px) {
+		.wiki-container {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.wiki-main-content {
+		min-width: 0;
+	}
+
+	.wiki-article {
+		background: white;
+		padding: 2rem;
+		border: 1px solid #a2a9b1;
+	}
+
+	.page-header {
+		border-bottom: 2px solid #a2a9b1;
+		padding-bottom: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.page-header h1 {
+		font-family: 'Georgia', serif;
+		font-size: 2.5rem;
+		color: #202122;
+		margin-bottom: 1rem;
+	}
+
+	.lead {
+		font-size: 1.1rem;
+		color: #54595d;
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.intro-section {
+		margin-bottom: 2rem;
+	}
+
+	.intro-section h2 {
+		font-size: 1.5rem;
+		color: #202122;
+		margin-bottom: 1rem;
+	}
+
+	.feature-list {
+		list-style: none;
+		padding: 0;
+	}
+
+	.feature-list li {
+		padding: 0.5rem 0;
+		padding-left: 1.5rem;
+		position: relative;
+	}
+
+	.feature-list li::before {
+		content: "✓";
+		position: absolute;
+		left: 0;
+		color: #0645ad;
+		font-weight: bold;
+	}
+
+	.stats-section {
+		background: #f8f9fa;
+		padding: 2rem;
+		border-radius: 8px;
+		margin: 2rem 0;
+	}
+
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.stat-card {
+		text-align: center;
+	}
+
+	.stat-number {
+		font-size: 3rem;
+		font-weight: 700;
+		color: #0645ad;
+		line-height: 1;
+	}
+
+	.stat-label {
+		font-size: 0.9rem;
+		color: #54595d;
+		margin-top: 0.5rem;
+	}
+
+	.category-section {
+		margin: 3rem 0;
+		padding-top: 2rem;
+		border-top: 1px solid #a2a9b1;
+	}
+
+	.category-title {
+		font-family: 'Georgia', serif;
+		font-size: 1.75rem;
+		color: #202122;
+		margin-bottom: 1.5rem;
+	}
+
+	.questions-grid {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.question-card {
+		border: 1px solid #a2a9b1;
+		background: white;
+		transition: all 0.2s ease;
+	}
+
+	.question-card:hover {
+		box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+		border-color: #0645ad;
+	}
+
+	.question-link {
+		display: block;
+		padding: 1.5rem;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.question-title {
+		font-size: 1.15rem;
+		color: #0645ad;
+		margin: 0 0 1rem 0;
+		line-height: 1.4;
+	}
+
+	.question-link:hover .question-title {
+		text-decoration: underline;
+	}
+
+	.question-meta {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.difficulty-badge {
+		display: inline-block;
+		padding: 0.25rem 0.75rem;
+		border-radius: 3px;
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+	}
+
+	.difficulty-easy {
+		background: #d4edda;
+		color: #155724;
+	}
+
+	.difficulty-medium {
+		background: #fff3cd;
+		color: #856404;
+	}
+
+	.difficulty-hard {
+		background: #f8d7da;
+		color: #721c24;
+	}
+
+	.answer-preview {
+		font-weight: 600;
+		color: #202122;
+		font-size: 0.95rem;
+	}
+
+	.exam-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.exam-tag {
+		display: inline-block;
+		padding: 0.25rem 0.5rem;
+		background: #e9ecef;
+		color: #495057;
+		font-size: 0.75rem;
+		border-radius: 3px;
+	}
+
+	.wiki-sidebar {
+		position: sticky;
+		top: 1rem;
+		align-self: start;
+	}
+
+	.sidebar-box {
+		background: #f8f9fa;
+		border: 1px solid #a2a9b1;
+		padding: 1.5rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.sidebar-box h3 {
+		font-size: 1rem;
+		margin: 0 0 1rem 0;
+		color: #202122;
+		border-bottom: 1px solid #a2a9b1;
+		padding-bottom: 0.5rem;
+	}
+
+	.filter-list, .tips-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.filter-list li {
+		margin-bottom: 0.5rem;
+	}
+
+	.filter-link {
+		color: #0645ad;
+		text-decoration: none;
+		display: block;
+		padding: 0.25rem 0;
+	}
+
+	.filter-link:hover {
+		text-decoration: underline;
+	}
+
+	.tips-box {
+		background: #fff3cd;
+		border-color: #ffc107;
+	}
+
+	.tips-list li {
+		padding: 0.5rem 0;
+		padding-left: 1.5rem;
+		position: relative;
+		font-size: 0.9rem;
+		color: #856404;
+	}
+
+	.tips-list li::before {
+		content: "→";
+		position: absolute;
+		left: 0;
+		color: #ffc107;
+		font-weight: bold;
+	}
+</style>

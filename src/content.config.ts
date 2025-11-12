@@ -90,10 +90,30 @@ const videos = defineCollection({
 	}),
 });
 
+// Q&A collection - SEO-optimized individual question-answer pages
+const qa = defineCollection({
+	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/qa' }),
+	schema: z.object({
+		question: z.string(),
+		answer: z.string(),
+		detailedAnswer: z.string(),
+		category: z.string(),
+		difficulty: z.enum(['easy', 'medium', 'hard']),
+		tags: z.array(z.string()),
+		relatedTopics: z.array(z.string()),
+		examRelevance: z.array(z.string()),
+		lastUpdated: z.date(),
+		metaTitle: z.string(),
+		metaDescription: z.string(),
+		keywords: z.array(z.string()),
+	}),
+});
+
 export const collections = {
 	study,
 	questions,
 	tests,
 	currentAffairs,
 	videos,
+	qa,
 };
